@@ -2,7 +2,7 @@
 CS 540 Class Project
 
 # Tutorials:
--------------
+
 ### Git
   * [Git Basics](https://www.atlassian.com/git)
   * [Interactive Git Branching Tool](https://learngitbranching.js.org/)
