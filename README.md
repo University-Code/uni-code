@@ -1,4 +1,4 @@
-# competative-programming
+# competitive-programming
 CS 540 Class Project
 
 # Tutorials:
