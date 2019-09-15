@@ -1,6 +1,5 @@
 # competitive-programming
 CS 540 Class Project
- tiny change.....
 
 # Tutorials:
 
