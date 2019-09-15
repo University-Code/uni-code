@@ -98,6 +98,7 @@ body {
 
 
   .user-menu{
+	z-index:1000000;
 	position: relative;
 	left:-5%;
 	float:right;
