@@ -1,5 +1,4 @@
 # competitive-programming
-## Development Branch
 CS 540 Class Project
 
 # Tutorials:
