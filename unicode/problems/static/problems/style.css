@@ -1,19 +1,40 @@
 /* Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
 
+#editor {
+	position: absolute;
+	width:45vw;
+	height: 50vh;
+	
+}
+.options-panel{
+	width:45vw;
+	padding-bottom:5px;
+	/* background-color:rgb(255, 255, 255); */
+
+}
+
+.options-panel select{
+	border-radius: 0px !important;
+	border-style:none;
+	background: none;
+	color:white
+
+}
+
 body {
 	background: #162129;
-	color: #333333;
+	color: #f1f1f1;
 	margin-top: 5rem;
   }
   h1,h2,h3,h4,h5,h6 {
 	color: #f5f5f5;
   }
-  div{
+  /* div{
 	font-family: 'Roboto Condensed', sans-serif;
 
   }
- 
+  */
 
   ul {
 	margin: 0;
