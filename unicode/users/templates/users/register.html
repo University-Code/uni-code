@@ -1,0 +1,15 @@
+{% extends "problems/base.html" %}
+{% block content %}
+    <div>
+        <form action="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend>Sign Up</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-info">Sign Up</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

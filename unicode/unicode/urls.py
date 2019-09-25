@@ -18,12 +18,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from users import views as user_views
 
 
 admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls,),
+    path('register/', user_views.register, name="register"), 
     path('problems/', include("problems.urls"))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns+=( staticfiles_urlpatterns())
