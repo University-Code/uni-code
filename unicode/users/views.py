@@ -10,6 +10,9 @@ def register(request):
         if registration_form.is_valid():
             registration_form.save()
             username = registration_form.cleaned_data.get('username')
+            password = registration_form.cleaned_data.get('password1')
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
             messages.success(request, f'Account created for {username}!')
             return redirect('problems-landing')
             
@@ -18,17 +21,5 @@ def register(request):
     return render(request, 'users/register.html', {'form' : registration_form})
 
 
-def login(request):
-    if request.method == 'POST': #user is submitting a login form
-        login_form = AuthenticationForm()
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request)
-            messages.success(request, f'Welcome, {username}')
-            return redirect('problems-landing')
-    else:
-        login_form = AuthenticationForm()
-    return render(request, 'users/login.html', {'form' : login_form})
+
         

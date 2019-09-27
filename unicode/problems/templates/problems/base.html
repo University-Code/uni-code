@@ -21,45 +21,33 @@
     <header class="site-header">
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
                 <div class="container">
-                <a class="navbar-brand mr-4" href="#">Uni-Code <i class="fas fa-code"></i></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav mr-auto">                    
-                    <a class="nav-item nav-link" href="#">Problems</a> 
-                    <a class="nav-item nav-link" href="#">MyClassroom</a>
-                    <a class="nav-item nav-link" href='#'>Create Problem</a>
-                    <a class="nav-item nav-link" href="#">Playground</a>
-                    </div>
-                    <!-- Navbar Right Side -->
-                    
-                    <div class="navbar-nav">
-                        <div class="dropdown">
-                                <a data-toggle="dropdown"class="nav-item nav-link account" href='#'><i class="fas fa-chalkboard-teacher"></i> &nbsp; kailyn_w   <i class="fa fa-chevron-down "></i> </a>
-
-                                <!-- <div class="dropdown-menu" align='center'>
-                                        <li class='dropmenu-item '>
-                                            <a  href="#"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                                        </li>
-                                        
-                                        <li class='dropmenu-item col-md-4'>
-                                            <a  href="#"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                                        </li>
-
-                                        <li class='dropmenu-item col-md-4'>
-                                            <a  href="#"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                                        </li>
-                                        <br> -->
-
-                                        
-
-                                </div>
+                    <a class="navbar-brand mr-4" href="#">Uni-Code <i class="fas fa-code"></i></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">                    
+                            <a class="nav-item nav-link" href="#">Problems</a> 
+                            <a class="nav-item nav-link" href="#">MyClassroom</a>
+                            <a class="nav-item nav-link" href='#'>Create Problem</a>
+                            <a class="nav-item nav-link" href="#">Playground</a>
                         </div>
-                        
-                       
-                    </div>                     
-                </div>
+                        <!-- Navbar Right Side -->
+                        {% if user.is_authenticated %}
+                            <div class="navbar-nav">
+                                <div class="dropdown">
+                                        <a data-toggle="dropdown"class="nav-item nav-link account" href='#'>
+                                            <i class="fas fa-chalkboard-teacher"></i> 
+                                                &nbsp; {{user.username}}  
+                                            <i class="fa fa-chevron-down "></i> 
+                                        </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a> 
+                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}                 
+                    </div>
                 </div>
             </nav>
     </header>
@@ -67,7 +55,11 @@
     <div>
         <div class='container user-menu wow fadeIn'>
             <div class='row drop-item'>
-                <span class='col-md-12'> <img id='avatar' src='{% static "problems/images/avatar.png" %}'/> kailyn_w <span class='year'>Freshman</span></span>
+                <span class='col-md-12'> 
+                    <img id='avatar' src='{% static "problems/images/avatar.png" %}'/> 
+                        {{ user.username }}
+                    <span class='year'>Freshman</span>
+                </span>
             </div> 
 
             <div class='row drop-item'>
@@ -86,7 +78,9 @@
 
                 <div class='col-md-12'>Change Password</div>
                 <div class='col-md-12'>Edit Profile</div>
-                <div id='logout' class='col-md-12'>Logout</div>
+                <div id='logout' class='col-md-12'>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
 
                 
             </div>
