@@ -40,7 +40,7 @@ _NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "ba
 1. Create fork from this repository
 
 2. Download repo to your local machine
-`git clone https://github.com/<Your github username here>/competitive-programming.git`
+`git clone https://github.com/<Your github username here>/uni-code.git`
 `cd competitive-programming`
 
 3. Activate your virtualenv (see above)
@@ -65,5 +65,5 @@ _alternatively you can create a new branch for each feature_
 
 4. `Push` new feature to your github
 
-5. Open pull request on [this repo](https://github.com/johnpaulkiser/competitive-programming)'s `dev` branch
+5. Open pull request on [this repo](https://github.com/johnpaulkiser/uni-code)'s `dev` branch
 
