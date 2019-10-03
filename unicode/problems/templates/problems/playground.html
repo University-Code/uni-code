@@ -1,0 +1,34 @@
+{% extends "problems/base.html" %}
+
+{% block content %}
+<div class='container'>
+    <div class=' row'>
+            <div class='col-md-6'>
+                <h1>Question</h1>
+            </div>
+            
+            <div class='col-md-6'>
+                <div class='options-panel'>
+                        <select>
+                            <option class='language'>JavaScript</option>
+                            
+                            <option class='language'>C++</option>
+                            
+                            <option class='language'>Java</option>
+
+                            <option class='language'>Python</option>
+
+                            <option class='language'>Clojure </option>
+
+                            <option class='language'>C#</option>
+                        </select>
+
+                    <span class='setting'>
+                        <i class="fas fa-adjust"></i>
+                    </span>
+                </div>
+                <div id='editor'>console.log("hello world");</div>
+            </div>
+    </div>
+</div>
+{% endblock %}

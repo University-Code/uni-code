@@ -7,10 +7,10 @@ def index(request):
 def landing(request):
     return render(request, 'problems/base.html', {"title": "Problems"})
 
-def demo(req):
-    return render(request, 'problems/base.html', {"title": "Demo"})
+def playground(request):
+    return render(request, 'problems/playground.html', {"title": "Playground"})
 
-def ranked(req):
+def ranked(request):
     return render(request, 'problems/base.html', {"title": "Ranked"})
 
 # Create your views here.
