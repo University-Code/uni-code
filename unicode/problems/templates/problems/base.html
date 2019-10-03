@@ -27,13 +27,14 @@
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
 
                 <div class="container">
-                    <a class="navbar-brand mr-4" href="#">Uni-Code <i class="fas fa-code"></i></a>
+                    <a class="navbar-brand mr-4" href="{% url 'index' %}">Uni-Code <i class="fas fa-code"></i></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
 
                 
                     <div class="collapse navbar-collapse" id="navbarToggle">
+                      
                         <!--Navbar Left Side-->
                         <div class="navbar-nav mr-auto">                    
                             <a class="nav-item nav-link" href="#">Problems</a> 
@@ -41,13 +42,22 @@
                             <a class="nav-item nav-link" href='#'>Create Problem</a>
                             <a class="nav-item nav-link" href="#">Playground</a>
                         </div>
-
+                      
                         <!-- Navbar Right Side -->
-                        <div class="navbar-nav">
-                            <div class="dropdown">
-                                <a data-toggle="dropdown"class="nav-item nav-link account" href='#'><i class="fas fa-chalkboard-teacher"></i> &nbsp; kailyn_w   <i class="fa fa-chevron-down "></i> </a>   
-                            </div>           
-                        </div>   
+                        {% if user.is_authenticated %}
+                            <div class="navbar-nav">
+                                <div class="dropdown">
+                                        <a data-toggle="dropdown"class="nav-item nav-link account" href='#'>
+                                            <i class="fas fa-chalkboard-teacher"></i> 
+                                                &nbsp; {{user.username}}  
+                                            <i class="fa fa-chevron-down "></i> 
+                                        </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a> 
+                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}                 
                     </div>
 
                 </div>
@@ -58,7 +68,11 @@
     <div>
         <div class='container user-menu wow fadeIn'>
             <div class='row drop-item'>
-                <span class='col-md-12'> <img id='avatar' src='{% static "problems/images/avatar.png" %}'/> kailyn_w <span class='year'>Freshman</span></span>
+                <span class='col-md-12'> 
+                    <img id='avatar' src='{% static "problems/images/avatar.png" %}'/> 
+                        {{ user.username }}
+                    <span class='year'>Freshman</span>
+                </span>
             </div> 
             <div class='row drop-item'>
                 <table class='col-md-12'>
@@ -73,22 +87,31 @@
                 </table>
                 <div class='col-md-12'>Change Password</div>
                 <div class='col-md-12'>Edit Profile</div>
-                <div id='logout' class='col-md-12'>Logout</div>   
+                <div id='logout' class='col-md-12'>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+
             </div>
         </div>
     </div>
 
-
     <!--Main Content-->
     <div id='main container' >
+      
+        {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+        {% endif %}
+      
         {% block content %} 
         {% endblock %}
         
 
     </div>
-    
-   
-    
+     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
