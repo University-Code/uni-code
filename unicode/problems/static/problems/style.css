@@ -10,17 +10,32 @@
 .options-panel{
 	width:45vw;
 	padding-bottom:5px;
+	
 	/* background-color:rgb(255, 255, 255); */
 
 }
 
 .options-panel select{
 	border-radius: 0px !important;
-	border-style:none;
+	border-style: solid;
+	border-width: 1px;
+	outline: none;
+    border-color: #3397e9;
+    box-shadow: 0 0 10px #3397e9;
 	background: none;
-	color:white
-
+	color:rgb(255, 255, 255)
 }
+
+.setting{
+	position: relative;
+	right:0;
+	border-style:solid;
+	border-width:1px;
+	border-color: #3397e9;
+	box-shadow: 0 0 10px #3397e9;
+}
+
+
 
 body {
 	background: #162129;
