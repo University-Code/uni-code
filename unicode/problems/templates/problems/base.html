@@ -40,7 +40,7 @@
                             <a class="nav-item nav-link" href="#">Problems</a> 
                             <a class="nav-item nav-link" href="#">MyClassroom</a>
                             <a class="nav-item nav-link" href='#'>Create Problem</a>
-                            <a class="nav-item nav-link" href="#">Playground</a>
+                            <a class="nav-item nav-link" href="{%url 'problems-playground' %}">Playground</a>
                         </div>
                       
                         <!-- Navbar Right Side -->
@@ -96,7 +96,7 @@
     </div>
 
     <!--Main Content-->
-    <div id='main container' >
+    <div id='main'class='container' >
       
         {% if messages %}
                 {% for message in messages %}

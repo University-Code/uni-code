@@ -3,13 +3,10 @@
 {% block content %}
 <div class='container'>
     <div class=' row'>
-            <div class='col-md-6'>
-                <h1>Question</h1>
-            </div>
-            
-            <div class='col-md-6'>
+      
+            <div class='col-md-6 ' id='editor-container'>
                 <div class='options-panel'>
-                        <select>
+                        <select class='select-language'>
                             <option class='language'>JavaScript</option>
                             
                             <option class='language'>C++</option>
@@ -22,13 +19,109 @@
 
                             <option class='language'>C#</option>
                         </select>
+                    <span class='settings'>
+                        <!--Theme Setting -->
+                        <span id='theme'>
+                            <div data-toggle="modal" data-target="#exampleModal">
+                                <i data-toggle="tooltip" data-placement="top" title="Theme" class="fas fa-adjust" ></i>
+                            </div>
 
-                    <span class='setting'>
-                        <i class="fas fa-adjust"></i>
+                            <!--Theme Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Change Theme</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class='row'>
+                                            <div class='col-md-8'>
+                                                <blockquote>
+                                                    "Everyday life is like programming, I guess. If you love something you can put beauty into it" &#128516;
+                                                    <div id='author'>- Donald Knuth</div>
+                                                </blockquote>
+                                            </div>
+
+                                            <div class='col-md-4'>
+                                                <select  class='select-theme'>
+                                                    <option disabled>Bright</option>
+                                                    <option>TextMate</option>
+                                                    <option>GitHub</option>
+                                                    <option>XCode</option>
+                                                    <option>Tomorrow</option>
+
+                                                    <option disabled>Dark</option>
+                                                    <option>Monokai</option>
+                                                    <option>Chaos</option>
+                                                    <option>Terminal</option>
+                                                    <option>Merbivore</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div> -->
+                                </div>
+                                </div>
+                            </div>
+
+                        </span>
                     </span>
                 </div>
                 <div id='editor'>console.log("hello world");</div>
             </div>
+
+            <!--Code Description-->
+            <div class='col-md-6' id='description-container'>
+                <h2>Reverse String</h2>
+                <hr>
+
+                <div class='attributes'>
+                    <span> Difficulty:<span class='difficulty'>Hard</span></span>
+                    <span><i>&#128077;</i> <u>23</u></span>
+                    <span><i>&#128078;</i> <u>6</u></span>
+                </div>
+                <br>
+
+                <div class='description'>
+                    <div>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem beatae ducimus
+                        repudiandae perferendis eum architecto quisquam deserunt sit commodi cupiditate dicta
+                    </div>
+                    <br>
+                    <div>
+                        itaque vero, voluptas distinctio vitae eaque suscipit fugit dignissimos.
+                    </div>
+                </div>
+
+                <br>
+                
+                <div class='example'>
+                    <code>
+                        Given nums = [2, 7, 11, 15], target = 9,
+                        <br><br>
+                        Because nums[0] + nums[1] = 2 + 7 = 9,
+                        <br>
+                        return [0, 1].
+                    </code>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+
+<footer>
+    <div class='submission-bar'>
+        <button class="btn run">Run Code <i class="fas fa-play"></i></button>
+        <button class="btn submit">Submit <i class="fas fa-vote-yea"></i></button>
+    </div>
+</footer>
+
+
 {% endblock %}

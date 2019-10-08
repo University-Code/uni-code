@@ -1,50 +1,33 @@
 /* Google fonts */
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
-
-#editor {
-	position: absolute;
-	width:45vw;
-	height: 50vh;
-	
-}
-.options-panel{
-	width:45vw;
-	padding-bottom:5px;
-	
-	/* background-color:rgb(255, 255, 255); */
-
-}
-
-.options-panel select{
-	border-radius: 0px !important;
-	border-style: solid;
-	border-width: 1px;
-	outline: none;
-    border-color: #3397e9;
-    box-shadow: 0 0 10px #3397e9;
-	background: none;
-	color:rgb(255, 255, 255)
-}
-
-.setting{
-	position: relative;
-	right:0;
-	border-style:solid;
-	border-width:1px;
-	border-color: #3397e9;
-	box-shadow: 0 0 10px #3397e9;
-}
-
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Roboto+Condensed&display=swap');
 
 
 body {
-	background: #162129;
+	background: #1a2933;
 	color: #f1f1f1;
 	margin-top: 5rem;
 }
+
 h1,h2,h3,h4,h5,h6 {
 	color: #f5f5f5;
   }
+
+footer {
+    position: fixed;
+    height: 50px;
+	background-color: rgb(238, 236, 236);
+	border-top-style:solid;
+	border-width:1px;
+	border-color:rgb(0, 247, 255);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+	margin-bottom: 0px;
+	color:rgb(221, 221, 221);
+	border-color: #3397e9;
+    box-shadow: 0 0 10px #3397e9;
+}
+
   /* div{
 	font-family: 'Roboto Condensed', sans-serif;
 
@@ -218,12 +201,132 @@ transition: ease-in .4s;
 }
 
 
+/*Text Editor*/
+#editor {
+	position: relative;
+	width:45vw;
+	height: 78vh;
+}
+
+#editor-container{
+	position:relative;
+	left:-100px;
+}
 
 
+.options-panel{
+	width:45vw;
+	padding-bottom:5px;
+	
+	/* background-color:rgb(255, 255, 255); */
+}
+
+.options-panel .select-language{
+	border-radius: 0px !important;
+	border-style: solid;
+	border-width: 1px;
+	outline: none;
+    border-color: #3397e9;
+    box-shadow: 0 0 10px #3397e9;
+	background: none;
+	color:rgb(255, 255, 255)
+}
+
+.settings span{
+	position: relative;
+	float:right;
+	/* border-style:solid; */
+	border-width:1px;
+}
+
+.settings i{
+	border-color: #3397e9;
+	box-shadow: 0 0 10px #3397e9;
+	border-radius:15px;
+}
 
 
+/* Modal Title */
+.modal-title{
+	color:black;
+}
+.modal div{
+	color:black;
+}
+
+.modal blockquote{
+	
+	font-size:18px;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+.modal .select-theme{
+	position:relative;
+	top:30px;
+}
+
+.modal #author{
+	position: relative;
+	top:10px;
+	color:rgb(1, 82, 231);
+}
 
 
+/*Submission Footer*/
+footer button{
+	position:relative;
+	top:5px;
+	left:-10px;
+	background: #00ebf3;
+	color:rgb(0, 0, 0);
+	border-style:none;
+	border-color: #3397e9;
+	box-shadow: 0 0 10px #3397e9;
+}
+
+footer .submission-bar{
+	float:right;
+}
+
+footer .submission-bar button{
+	margin:0 5px;
+}
+
+
+/*Descrition */
+#description-container{
+	position: relative;
+	background-color:rgb(238, 236, 236);
+	box-shadow: 0 4px 8px 0 #3397e9, 0 6px 20px 0 #3397e9;
+	padding:20px;
+	left:100px;
+	width:2000px;
+}
+
+#description-container .attributes span{
+	margin:0 20px;
+}
+
+/* Like  & Dislike */
+.attributes i{
+	font-size:20px; 
+	font-family: 'Roboto', sans-serif;
+
+}
+
+#description-container *{
+	color:black;
+}
+.example{
+	background-color:rgb(211, 211, 211);
+	box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.418), 0 6px 20px 0 rgba(255, 255, 255, 0.411);
+	padding:20px;
+}
+
+code{
+	color:rgb(0, 26, 255);
+}
 
 
 
