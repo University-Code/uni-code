@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Problem, ProblemTestCase
 
-# Register your models here.
+''' 
+    This creates forms at the /admin/ route 
+    for easy data entry
+'''
+admin.site.register(Problem)
+admin.site.register(ProblemTestCase)

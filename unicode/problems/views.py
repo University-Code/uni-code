@@ -4,13 +4,8 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'problems/index.html', {"title": "Welcome to Uni-code"})
 
-def landing(request):
-    return render(request, 'problems/base.html', {"title": "Problems"})
+def problems_list(request):
+    return render(request, 'problems/problems.html', {"title": "Problems"})
 
-def demo(req):
-    return render(request, 'problems/base.html', {"title": "Demo"})
-
-def ranked(req):
-    return render(request, 'problems/base.html', {"title": "Ranked"})
-
-# Create your views here.
+def create_problem(request):
+    return render(request, 'problems/create.html', {"title": "Create Problem"})

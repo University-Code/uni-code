@@ -14,7 +14,7 @@ def register(request):
             user = authenticate(request, username=username, password=password)
             login(request, user)
             messages.success(request, f'Account created for {username}!')
-            return redirect('problems-landing')
+            return redirect('problems')
             
     else:
         registration_form = UserRegistrationForm()
