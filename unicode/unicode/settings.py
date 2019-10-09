@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'editor.apps.EditorConfig',
     'problems.apps.ProblemsConfig',
+    'codeEvalEngine.apps.CodeevalengineConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',

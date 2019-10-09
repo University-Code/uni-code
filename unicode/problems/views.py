@@ -9,3 +9,7 @@ def problems_list(request):
 
 def create_problem(request):
     return render(request, 'problems/create.html', {"title": "Create Problem"})
+
+def playground(request):
+    return render(request, 'problems/playground.html', {"title": "Playground"})
+
