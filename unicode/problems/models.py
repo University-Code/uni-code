@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 ''' Models that represent a unicode problem'''
 
 class Problem(models.Model):
-    user_submitted = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    submitted = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     example_solution= models.CharField(max_length=1000)
-
+    created = models.DateTimeField(auto_now_add=True)
     #make tostring
 
 class ProblemTestCase(models.Model):
