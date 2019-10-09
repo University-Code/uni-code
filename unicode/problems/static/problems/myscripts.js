@@ -5,7 +5,7 @@ difficultyColor();
 
 
 $(document).ready(()=>{
-    
+
     //Initializes Editor
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
@@ -132,3 +132,4 @@ function boilerPlateCode(){
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+

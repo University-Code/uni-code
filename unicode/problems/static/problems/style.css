@@ -1,6 +1,14 @@
 /* Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Roboto+Condensed&display=swap');
-
+/* #left-side-bar{
+	position:fixed;
+	left:0px;
+	right:94.5vw;
+	top:0px;
+	bottom:0px;
+	background-color:rgb(238, 236, 236);
+	z-index: 1000;
+} */
 
 body {
 	background: #1a2933;
@@ -25,7 +33,22 @@ footer {
 	margin-bottom: 0px;
 	color:rgb(221, 221, 221);
 	border-color: #3397e9;
-    box-shadow: 0 0 10px #3397e9;
+	box-shadow: 0 0 10px #3397e9;
+	z-index: 1001;
+}
+
+#console{
+	position:fixed;
+	bottom:0px;
+	left:5.6vw;
+	right:49.5vw;
+	height: 300px;
+	color:black;
+	background-color:rgb(238, 236, 236);
+	border-color: #3397e9;
+	box-shadow: 0 0 10px #3397e9;
+	z-index:1000;
+	border-radius:5px;
 }
 
   /* div{
@@ -117,16 +140,17 @@ li{
 
 
 .user-menu{
-	z-index:1000000;
-	position: relative;
-	left:-5%;
-	float:right;
+	z-index:10000;
+	position: absolute;
+	right:5%;
+	/* float:right; */
 	box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.514), 0 6px 20px 0 rgba(255, 255, 255, 0.514);
 	background-color: ghostwhite;
 	width:300px;
 	height: 405px;
 	border-radius: 10px;
 	display: none;
+	color:black;
 
 }
 
@@ -206,6 +230,9 @@ transition: ease-in .4s;
 	position: relative;
 	width:45vw;
 	height: 78vh;
+	border-color: #3397e9;
+	box-shadow: 0 4px 8px 0 #3397e9, 0 6px 20px 0 #3397e9;
+
 }
 
 #editor-container{
@@ -277,7 +304,6 @@ transition: ease-in .4s;
 footer button{
 	position:relative;
 	top:5px;
-	left:-10px;
 	background: #00ebf3;
 	color:rgb(0, 0, 0);
 	border-style:none;
@@ -291,6 +317,8 @@ footer .submission-bar{
 
 footer .submission-bar button{
 	margin:0 5px;
+	left:-10px;
+
 }
 
 
@@ -304,12 +332,12 @@ footer .submission-bar button{
 	width:2000px;
 }
 
-#description-container .attributes span{
+#description-container  span{
 	margin:0 20px;
 }
 
-/* Like  & Dislike */
-.attributes i{
+	/* Like  & Dislike */
+.description-container i{
 	font-size:20px; 
 	font-family: 'Roboto', sans-serif;
 
@@ -327,6 +355,100 @@ footer .submission-bar button{
 code{
 	color:rgb(0, 26, 255);
 }
+
+
+
+
+/*Console */
+#console .tabs{
+	width:100%;
+	height: 50px;
+	color:white;
+	
+}
+
+.open-console{
+	position:relative;
+	left:80px;
+}
+
+
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+#console .nav-item{
+	color:rgb(4, 199, 233);
+	/* width:100px !important; */
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #aa00cc;
+    background-color:rgb(41, 40, 40);
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+ 
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.project-tab .tab-pane, th{
+	background-color:white;
+}
+
+.project-tab .tab-pane{
+	color:black;
+	position:relative;
+	height:300px;
+	padding:30px 10px 30px 10px;
+	overflow-y:auto;
+
+}
+.project-tab .output{
+	position:relative;
+	padding:10px;
+	border-style:solid;
+	border-width:2px;
+	border-color:grey;
+	height:140px;
+	text-align: left;
+	
+}
+
+.project-tab code{
+	color:rgb(130, 9, 167);
+}
+
+.fa-check{
+	color:rgb(11, 161, 11);
+}
+
+.fa-times{
+	color:rgb(209, 9, 9);
+}
+
+
 
 
 
