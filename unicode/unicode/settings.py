@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'editor.apps.EditorConfig',
     'problems.apps.ProblemsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
