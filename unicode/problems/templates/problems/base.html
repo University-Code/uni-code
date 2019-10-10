@@ -34,13 +34,12 @@
 
                 
                     <div class="collapse navbar-collapse" id="navbarToggle">
-                      
+
                         <!--Navbar Left Side-->
                         <div class="navbar-nav mr-auto">                    
-                            <a class="nav-item nav-link" href="#">Problems</a> 
-                            <a class="nav-item nav-link" href="#">MyClassroom</a>
-                            <a class="nav-item nav-link" href='#'>Create Problem</a>
-                            <a class="nav-item nav-link" href="#">Playground</a>
+                            <a class="nav-item nav-link" href="{% url 'problems' %}">Problems</a> 
+                            <a class="nav-item nav-link" href="{% url 'create-problem' %}">Create Problem</a>
+                            <a class="nav-item nav-link" href="{% url 'editor' %}">Playground</a>
                         </div>
                       
                         <!-- Navbar Right Side -->
@@ -96,7 +95,7 @@
     </div>
 
     <!--Main Content-->
-    <div id='main container' >
+    <div id='main'class='container' >
       
         {% if messages %}
                 {% for message in messages %}
@@ -117,8 +116,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-
-    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-resize/1.1/jquery.ba-resize.js'></script>
+    <script src></script>
 
 
     <script src="{% static 'problems/myscripts.js' %}"></script>
