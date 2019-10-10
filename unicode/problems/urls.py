@@ -1,10 +1,10 @@
 
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from .views import ProblemListView, create_problem
 
 urlpatterns = [
-    path('', views.landing, name='problems-landing'),
-    path('demo/',views.demo, name='problems-demo'),
-    path('ranked/', views.ranked, name='problems-ranked')
+    path('', ProblemListView.as_view(), name='problems'),
+    path('create/', create_problem, name='create-problem')
+
 ]
