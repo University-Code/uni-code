@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def playground(request):
-    return render(request, 'editor/playground.html', {"title": "Playground"})
+def editor(request):
+    return render(request, 'editor/editor.html', {"title": "Editor"})
 
 # Create your views here.
