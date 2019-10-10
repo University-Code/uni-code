@@ -1,0 +1,33 @@
+{% extends "problems/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div> 
+    <div class="col-md-6">
+        {% for problem in page_obj %}
+        {# Each "Problem" is a Problem model object. #}
+        <h3>{{ problem.title }}</h3><br>
+        
+        {% endfor %}
+        
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page.number }} of {{ contacts.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock %}
