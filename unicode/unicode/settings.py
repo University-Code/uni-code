@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'eval_engine.apps.EvalEngineConfig',
+    'global.apps.GlobalConfig',
     'editor.apps.EditorConfig',
     'problems.apps.ProblemsConfig',
     'users.apps.UsersConfig',
