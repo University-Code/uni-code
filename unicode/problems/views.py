@@ -1,17 +1,23 @@
 from django.views.generic.list import ListView
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Problem
-
+from django.forms import modelformset_factory
+from .models import Problem, ProblemTestCase
+from .forms import ProblemForm
 
 def index(request):
     return render(request, 'problems/index.html', {"title": "Welcome to Uni-code"})
 
 def create_problem(request):
-    return render(request, 'problems/create.html', {"title": "Create Problem"})
+    problem_form = ProblemForm()
+    testcase_form = modelformset_factory(ProblemTestCase, fields=('test_input', 'test_output'), extra=3)
+    context = {
+        'title': 'Create Problem',
+        'problem_form': problem_form,
+        'testcase_form': testcase_form
+    }
+    return render(request, 'problems/create.html', context) 
 
-# def playground(request):
-#     return render(request, 'problems/playground.html', {"title": "Playground"})
 
 
 class ProblemListView(ListView):

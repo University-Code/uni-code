@@ -1,11 +1,19 @@
 {% extends "global/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
-<h1>Create problems here</h1>
-<div class="row">
-    <div class="col-md-2"></div> 
-    <div class="col-md-4">hey</div>
-    <div class="col-md-4">yo</div>
-</div>
+<h1>Create problems here</h1> 
+<form method="POST" class="row">
+  {% csrf_token %}
+  <div class="col-md-4">
+    {{ problem_form|crispy }}
+  
+  <button type="submit" class="save btn btn-outline">Submit</button> 
+  </div>
+  <div class="col-md-4">
+    {{ testcase_form|crispy }}
+  </div>
+    
+</form>
 
     
 {% endblock %}
