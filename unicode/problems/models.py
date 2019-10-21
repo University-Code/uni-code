@@ -21,4 +21,5 @@ class ProblemTestCase(models.Model):
     test_input = models.CharField(max_length=1000)
     test_output = models.CharField(max_length=1000)
 
-    # make tostring
+    def __str__(self):
+        return f'{self.problem} testcase {self.id}'
