@@ -1,8 +1,8 @@
-from django.views.generic.list import ListView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import modelformset_factory
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Problem, ProblemTestCase
 from .forms import ProblemForm
 
@@ -56,11 +56,14 @@ def create_problem(request):
 
 
 
-class ProblemListView(ListView):
+def problems(request):
+    ''' 
+    Handles pagination of selectable problems to solve.
+    '''
 
-    model = Problem
-    paginate_by = 40
+    problems = Problem.objects.all()
+    paginator = Paginator(problems, 5)
+    page = request.GET.get('page')
+    problems = paginator.get_page(page)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+    return render(request, 'problems/problem_list.html', {'problems': problems})

@@ -3,31 +3,34 @@
 <div class="row">
     <div class="col-md-2"></div> 
     <div class="col-md-6">
-        {% for problem in page_obj %}
+        {% for problem in problems %}
         {# Each "Problem" is a Problem model object. #}
         <h3>{{ problem.title }}</h3><br>
         
         {% endfor %}
         
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page.number }} of {{ contacts.paginator.num_pages }}.
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
     </div>
     <div class="col-md-2"></div>
 </div>
+<div> 
+  <div class="pagination">
+    <span class="page-item">
+      {% if problems.has_previous %}
+      <a class="page-link" href="?page=1">&laquo;</a>
+      <a class="page-link" href="?page={{ problems.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="page-item active">
+        Page {{ problems.number }} of {{ problems.paginator.num_pages }}
+      </span>
+
+      {% if problems.has_next %}
+      <a class="page-link" href="?page={{ problems.next_page_number }}">next</a>
+      <a class="page-link" href="?page={{ problems.paginator.num_pages }}">&raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+</div>
+
 
 {% endblock %}
