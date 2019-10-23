@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Problem(models.Model):
-    submitted = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)

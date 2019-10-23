@@ -5,32 +5,48 @@
     <div class="col-md-6">
         {% for problem in problems %}
         {# Each "Problem" is a Problem model object. #}
-        <h3>{{ problem.title }}</h3><br>
-        
+        <div class="problem-container mb-4"> 
+          <a href="{% url 'editor' problem.id %}"> {{ problem.title }} </a>
+          <span> {{ problem.user }} </span>
+        </div> 
         {% endfor %}
         
     </div>
     <div class="col-md-2"></div>
 </div>
-<div> 
-  <div class="pagination">
-    <span class="page-item">
-      {% if problems.has_previous %}
-      <a class="page-link" href="?page=1">&laquo;</a>
-      <a class="page-link" href="?page={{ problems.previous_page_number }}">previous</a>
-      {% endif %}
 
-      <span class="page-item active">
-        Page {{ problems.number }} of {{ problems.paginator.num_pages }}
-      </span>
+<nav class="fixed-bottom mb-4" aria-label="Page navigation">
+  <ul class="pagination justify-content-center"> 
+  {% if problems.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">begin</span>
+      </a>
+    </li>   
+  {% endif %}
 
-      {% if problems.has_next %}
-      <a class="page-link" href="?page={{ problems.next_page_number }}">next</a>
-      <a class="page-link" href="?page={{ problems.paginator.num_pages }}">&raquo;</a>
-      {% endif %}
-    </span>
-  </div>
-</div>
+  {% for n in problems.paginator.page_range %}
+    {% if problems.number == n %}
+    <li class="page-item active">
+      <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+    </li>
+    {% elif n > problems.number|add:'-3' and n < problems.number|add:'3' %}
+    <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  {% if problems.has_next %}
+  <li class="page-item">
+    <a class="page-link" href="?page={{ problems.paginator.num_pages }}" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      <span class="sr-only">end</span>
+    </a>
+  </li>
+  {% endif %}   
+  </ul>
+</nav>
+
 
 
 {% endblock %}

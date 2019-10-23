@@ -39,7 +39,7 @@ def create_problem(request):
             return render(request, 'problems/create.html', context)
         
         problem = problem_form.save(commit=False)
-        problem.submitted = request.user
+        problem.user = request.user
         problem.save()
 
         for form in testcase_form:
@@ -62,8 +62,9 @@ def problems(request):
     '''
 
     problems = Problem.objects.all()
-    paginator = Paginator(problems, 5)
+    paginator = Paginator(problems, 10)
     page = request.GET.get('page')
     problems = paginator.get_page(page)
 
     return render(request, 'problems/problem_list.html', {'problems': problems})
+
