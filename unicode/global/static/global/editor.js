@@ -35,19 +35,9 @@ $(document).ready(()=>{
        language= languageSelection($('.select-language').val())
        boilierPlate[language]= editor.getValue()
        console.log(boilierPlate[language])
-       //boilerPlate.getValue())
     })
         
 
-     //Rotates arrow on menu drop down
-    $(".account").click(()=>{
-        $(".fa-chevron-down").toggleClass("rotate180")
-    })
-
-    // Shows/Hides User account menu
-    $('.account').click(()=> {
-        $('.user-menu').toggle()
-    })
 
 })
 
