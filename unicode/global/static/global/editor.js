@@ -1,10 +1,18 @@
-functionName= "reverseString"
+$(document).ready(()=>{
+
+functionName= $('#function_name').html()
 boilierPlate= boilerPlateCode();
+var editor = ace.edit("editor");
+
 difficultyColor();
 
+$("#user_submission").submit((e)=>{    
+    e.preventDefault()
+    userSubmission(editor)
+
+})
 
 
-$(document).ready(()=>{
 
     //Initializes Editor
     var editor = ace.edit("editor");
@@ -115,6 +123,31 @@ function boilerPlateCode(){
 
     return boilierPlate;
 
+}
+
+function userSubmission(editor){
+
+    //Collects data for Judge API
+    var codingLanguage= $('.language').val()
+    var userCode=editor.getValue() 
+        
+    $.ajax({
+    type: 'post',
+    url: 'test/',
+    data: {
+        
+        language: codingLanguage,
+        code: userCode,
+        csrfmiddlewaretoken: window.CSRF_TOKEN
+
+    },
+    dataType: 'json',
+    success: function (response) {
+        console.log(response)
+        input= response.submission
+        console.log(input)
+    }
+  });
 }
 
    

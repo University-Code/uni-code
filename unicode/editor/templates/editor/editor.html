@@ -79,7 +79,7 @@
 
             <!--Code Description-->
             <div class='col-md-6' id='description-container'>
-                <h2>Reverse String</h2>
+                <h2 id='function_name'>Reverse String</h2>
                 <hr>
 
                 <div class='attributes'>
@@ -171,8 +171,12 @@ sd
 <!--Footer-->
 <footer>
     <div class='submission-bar'>
-        <button class="btn run">Run Code <i class="fas fa-play"></i></button>
-        <button class="btn submit">Submit <i class="fas fa-vote-yea"></i></button>
+        <form id='user_submission' action='test/' method='POST'>
+            {% csrf_token %}  
+            <input type='hidden' name='hidden' value='hey'/>
+            <!-- <button class="btn run">Run Code <i class="fas fa-play"></i></button> -->
+            <button class="btn submit" name='submit' value='hello'>Submit <i class="fas fa-vote-yea"></i></button>
+        </form>
     </div>
 
     <div>

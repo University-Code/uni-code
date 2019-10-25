@@ -47,11 +47,13 @@ def editor(request):
 
 
 def test(request):
-    
+    response= request.POST
+
+    logging.info(response)
     
     if request.method == "GET":
         return render(request, 'editor/editor.html',context)
     elif request.method == "POST":
-        return HttpResponse("POST")
+        return JsonResponse(response)
 
     #return HttpsResponse("hello")
