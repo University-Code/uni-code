@@ -450,8 +450,12 @@ code{
 	color:rgb(209, 9, 9);
 }
 
-
-
-
-
+.problem-container{
+    width: 100%;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: grey;
+    padding: 30px 10px 30px 60px;
+}
 

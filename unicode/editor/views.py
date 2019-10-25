@@ -3,12 +3,10 @@
 #########################################################
 
 
-from django.shortcuts import render
+from django.shortcuts import render,
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
-from django.forms.models import model_to_dict
-from django.contrib.auth.models import User
 from django.db import models
 from problems.models import Problem
 from django.core import serializers
@@ -31,19 +29,9 @@ LOGGING = {
 
 logging.config.dictConfig(LOGGING)
 problem_data= Problem.objects.values()
-#json = serializers.serialize('json', problem_data)
 logging.info(problem_data)
 
 
-context={
-    "title": "Editor",
-    "has": {"editor":"yes"},
-}
-
-def editor(request):
-    return render(request, 'editor/editor.html', context)
-
-# Create your views here.
 
 
 def test(request):
@@ -54,6 +42,44 @@ def test(request):
     if request.method == "GET":
         return render(request, 'editor/editor.html',context)
     elif request.method == "POST":
+        #database
+
         return JsonResponse(response)
 
     #return HttpsResponse("hello")
+
+
+
+
+############################################
+
+
+
+
+def editor(request, prob_id):
+    ''' 
+    Gets the submitted id from url and renders editor.html
+    with appropriate data
+    '''
+
+    try:
+        problem = Problem.objects.get(pk=prob_id)
+    except:
+        # if problem does not exist redirect to playground
+        return redirect('playground')
+
+    context = {
+        "title": "Editor",
+        "problem_title": problem.title,
+        "has": {"editor":"yes"}
+    }
+
+    return render(request, 'editor/editor.html', context)
+
+
+def playground(request):
+    context={
+        "title": "Editor",
+        "has": {"editor":"yes"}
+    }
+    return render(request, 'editor/editor.html', context)

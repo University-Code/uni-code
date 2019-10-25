@@ -3,7 +3,10 @@ from django.urls import path
 from .views import *
 
 
+
 urlpatterns = [
-    path('', editor, name='editor'),
+    path('', playground, name='playground'),
+    path('<int:prob_id>', editor, name='editor'),
     path('test/', test, name='test')
+
 ]
