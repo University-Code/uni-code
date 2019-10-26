@@ -36,8 +36,6 @@ logging.info(problem_data)
 
 def test(request):
     response= request.POST
-
-    logging.info(response)
     
     if request.method == "GET":
         return render(request, 'editor/editor.html',context)
