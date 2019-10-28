@@ -1,7 +1,7 @@
-{% extends "problems/base.html" %}
+{% extends "global/base.html" %}
 
 {% block content %}
-<div class='container'>
+<div >
     <div class=' row'>
       
             <div class='col-md-6 ' id='editor-container'>
@@ -79,8 +79,12 @@
 
             <!--Code Description-->
             <div class='col-md-6' id='description-container'>
+              {% if problem_title %}
+                <h2>{{ problem_title }}</h2>
+              {% else %}
                 <h2>Reverse String</h2>
                 <hr>
+              {% endif %}
 
                 <div class='attributes'>
                     <span> Difficulty:<span class='difficulty'>Easy</span></span>
