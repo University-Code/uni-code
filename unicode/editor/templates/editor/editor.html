@@ -75,12 +75,13 @@
                     </span>
                 </div>
                 <div id='editor'>console.log("hello world");</div>
+                <!-- <div id='problem_title' style='display:none'>{% if problem_title %} {{ problem_title  }} {% endif %}</div> -->
             </div>
 
             <!--Code Description-->
             <div class='col-md-6' id='description-container'>
               {% if problem_title %}
-                <h2>{{ problem_title }}</h2>
+                <h2 id='problem_title'>{{ problem_title }}</h2>
               {% else %}
                 <h2>Reverse String</h2>
                 <hr>

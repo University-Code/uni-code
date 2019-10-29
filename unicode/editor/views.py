@@ -3,7 +3,7 @@
 #########################################################
 
 
-from django.shortcuts import render,
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
@@ -60,19 +60,32 @@ def editor(request, prob_id):
     with appropriate data
     '''
 
-    try:
-        problem = Problem.objects.get(pk=prob_id)
-    except:
-        # if problem does not exist redirect to playground
-        return redirect('playground')
+    response= request.POST
 
-    context = {
-        "title": "Editor",
-        "problem_title": problem.title,
-        "has": {"editor":"yes"}
-    }
+    if request.method == "GET":
+        try:
+            problem = Problem.objects.get(pk=prob_id)
+        except:
+            # if problem does not exist redirect to playground
+            return redirect('playground')
 
-    return render(request, 'editor/editor.html', context)
+        context = {
+            "title": "Editor",
+            "problem_title": problem.title,
+            "has": {"editor":"yes"}
+        }
+
+        logging.info(problem.title)
+
+        return render(request, 'editor/editor.html', context)
+
+
+
+    elif request.method == "POST":
+        #database
+        return JsonResponse(response)
+
+    
 
 
 def playground(request):

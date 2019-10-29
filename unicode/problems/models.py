@@ -10,6 +10,7 @@ class Problem(models.Model):
     description = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
     example_solution = models.CharField(max_length=1000)
+    datatype = models.CharField(max_length=10)
 
     def __str__(self):
         return self.title
@@ -17,7 +18,6 @@ class Problem(models.Model):
 
 class ProblemTestCase(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE, )
-    datatype = models.CharField(max_length=10)
     test_input = models.CharField(max_length=1000)
     test_output = models.CharField(max_length=1000)
 

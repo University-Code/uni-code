@@ -1,53 +1,60 @@
-$(document).ready(()=>{
+$(document).ready(()=>{   
+    runOnce=false
 
-    functionName= $('#function_name').html()
-    boilierPlate= boilerPlateCode();
-    var editor = ace.edit("editor");
+    //underScoreToCamelCase()    
+    language= $( ".select-language" ).val();
+    problemTitle= $('#problem_title').html()
+
+    // console.log(problemTitle)
+    boilerPlate= boilerPlateCode(problemTitle);
     
     difficultyColor();
     
     $("#user_submission").submit((e)=>{    
         e.preventDefault()
         userSubmission(editor)
-    
     })
     
     
     
-        //Initializes Editor
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
-        editor.session.setMode("ace/mode/javascript");
-        editor.setValue(boilierPlate['javascript'],0);
+    //Initializes Editor
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setValue(boilerPlate['javascript'],0);
+
+    //Changes Language based on selection
+    $('.select-language').change(()=>{
+        language= $('.select-language').val()
+        option= languageSelection($('.select-language').val());
+        editor.session.setMode("ace/mode/"+option);        
+
+        editor.setValue(boilerPlate[option],0);
+
+
+
     
-        //Changes Language based on selection
-        $('.select-language').change(()=>{
-            option= languageSelection($('.select-language').val());
-            editor.session.setMode("ace/mode/"+option);
-            console.log('yerr', option)
-            editor.setValue(boilierPlate[option],0);
-        
-        })
-    
-        $('.select-theme').change(()=>{
-            theme= $('.select-theme').val().toLowerCase()
-            console.log(theme)
-            editor.setTheme("ace/theme/"+theme)
-    
-            //Close window
-            $(".close").trigger('click')
-        })
-    
-        //Updates Text editor code 
-        $("#editor").keyup(()=>{
-           language= languageSelection($('.select-language').val())
-           boilierPlate[language]= editor.getValue()
-           console.log(boilierPlate[language])
-        })
+    })
+
+    $('.select-theme').change(()=>{
+        theme= $('.select-theme').val().toLowerCase()
+        console.log(theme)
+        editor.setTheme("ace/theme/"+theme)
+
+        //Close window
+        $(".close").trigger('click')
+    })
+
+    //Updates Text editor code 
+    $("#editor").keyup(()=>{
+        language= languageSelection($('.select-language').val())
+        boilerPlate[language]= editor.getValue()
+        console.log(boilerPlate[language])
+    })
             
     
     
-    })
+})
     
     
     function languageSelection(option){
@@ -87,33 +94,33 @@ $(document).ready(()=>{
        }
     }
     
-    function boilerPlateCode(){
+    function boilerPlateCode(functionName){
         //Boiler Plate Code for autoloading code
-        boilierPlate={
+        boilerPlate={
             //JavaScript
-            "javascript":`function ${functionName}(word){
+            "javascript":`function ${titleToFunctionName(functionName,"JavaScript")}(word){
                     \r}`,
             
             //Java
             "java":`class Program{\r\tpublic static void main (String[]args){
-                            \r\t\tString ${functionName}(String word){
+                            \r\t\tString ${titleToFunctionName(functionName,"Java")}(String word){
                                 \r\t\t\tSystem.out.println("Hello World!")
                                 \r\t\t}\r\t}\r}`,
             
             //Python
-            "python": `def ${functionName}(word):`,
+            "python": `def ${titleToFunctionName(functionName,"Python")}(word):`,
     
             //C#
             "csharp": 
             
-                    `public class Program{\r\tpublic static void ${functionName}(){
+                    `public class Program{\r\tpublic static void ${titleToFunctionName(functionName,"C#")}(){
                         \r\t\tConsole.WriteLine("Hello World!");
                         \r\t}
                 \r}`,
     
             //C++       
             "c_cpp": 
-                    `#include <iostream>\nusing namespace std;\nint ${functionName}(){
+                    `#include <iostream>\nusing namespace std;\nint ${titleToFunctionName(functionName,"C++")}(){
                         \r\tcout << "Hello World" << endl;\r\treturn 0;
                     \r}`,
             //Clojure
@@ -121,7 +128,7 @@ $(document).ready(()=>{
     
         }
     
-        return boilierPlate;
+        return boilerPlate;
     
     }
     
@@ -149,7 +156,22 @@ $(document).ready(()=>{
         }
       });
     }
-    
+
+    function titleToFunctionName(string,language){
+        if(language=="Python"){
+            string=string.toLowerCase()
+            functionName= string.split(" ").join("_")
+        }
+        else{
+            string= string.split(" ").map(x=> x.charAt(0).toUpperCase() + x.slice(1)).join("")
+            functionName= string.charAt(0).toLowerCase() +string.slice(1)
+
+        }
+        
+        console.log(functionName)
+        return functionName
+    }
+
        
     //Enable Tool Tip
     $(function () {
