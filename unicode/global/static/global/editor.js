@@ -140,7 +140,7 @@ $(document).ready(()=>{
             
         $.ajax({
         type: 'post',
-        url: 'test/',
+        url: '',
         data: {
             
             language: codingLanguage,

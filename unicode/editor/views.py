@@ -34,7 +34,6 @@ def editor(request, prob_id):
     with appropriate data
     '''
 
-    response = request.POST
 
     if request.method == "GET":
         try:
@@ -46,6 +45,7 @@ def editor(request, prob_id):
         context = {
             "title": "Editor",
             "problem_title": problem.title,
+            "id": prob_id,
             "has": {"editor":"yes"}
         }
 
@@ -55,8 +55,10 @@ def editor(request, prob_id):
 
 
 
-    elif request.method == "POST":
-        #database
+    if request.method == "POST":
+        print(prob_id)        
+        response = request.POST
+        #Call to code eval here
         return JsonResponse(response)
 
 
