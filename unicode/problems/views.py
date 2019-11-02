@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import modelformset_factory
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .models import Problem, ProblemTestCase
 from .forms import ProblemForm
@@ -9,6 +10,7 @@ from .forms import ProblemForm
 def index(request):
     return render(request, 'problems/index.html', {"title": "Welcome to Uni-code"})
 
+@login_required  
 def create_problem(request):
     '''
     Handles displaying and validating new problem submission forms.
