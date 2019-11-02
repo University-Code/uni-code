@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from .views import playground
-
+from .views import editor, playground
 
 urlpatterns = [
-    path('playground/', playground, name='editor-playground')
+    path('', playground, name='playground'),
+    path('<int:prob_id>', editor, name='editor'),
 ]

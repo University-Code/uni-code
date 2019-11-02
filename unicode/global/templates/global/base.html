@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel='stylesheet' href="{% static 'problems/style.css' %}"/>
+    <link rel='stylesheet' href="{% static 'global/style.css' %}"/>
 
     <!--Select 2 Plugin-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
@@ -39,7 +39,7 @@
                         <div class="navbar-nav mr-auto">                    
                             <a class="nav-item nav-link" href="{% url 'problems' %}">Problems</a> 
                             <a class="nav-item nav-link" href="{% url 'create-problem' %}">Create Problem</a>
-                            <a class="nav-item nav-link" href="{% url 'editor-playground' %}">Playground</a>
+                            <a class="nav-item nav-link" href="{% url 'playground' %}">Playground</a>
                         </div>
                       
                         <!-- Navbar Right Side -->
@@ -68,7 +68,7 @@
         <div class='container user-menu wow fadeIn'>
             <div class='row drop-item'>
                 <span class='col-md-12'> 
-                    <img id='avatar' src='{% static "problems/images/avatar.png" %}'/> 
+                    <img id='avatar' src='{% static "global/images/avatar.png" %}'/> 
                         {{ user.username }}
                     <span class='year'>Freshman</span>
                 </span>
@@ -117,17 +117,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-resize/1.1/jquery.ba-resize.js'></script>
-    <script src></script>
-
-
-    <script src="{% static 'problems/myscripts.js' %}"></script>
-    <script src="{% static 'problems/wow.min.js' %}"></script>
-    <script>
-        new WOW().init();
-       
-
-
-    </script>
+    {% if has.editor %}
+        <script src="{% static 'global/editor.js' %}"></script>
+    {% endif %}
+    
+    <script src="{% static 'global/base.js' %}"></script>
+    <script src="{% static 'global/wow.min.js' %}"></script>
+    <script> 
+        new WOW().init()
+         window.CSRF_TOKEN = "{{ csrf_token }}"
+     </script>
 
 </body>
 </html>

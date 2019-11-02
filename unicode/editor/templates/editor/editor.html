@@ -1,7 +1,7 @@
-{% extends "problems/base.html" %}
+{% extends "global/base.html" %}
 
 {% block content %}
-<div class='container'>
+<div >
     <div class=' row'>
       
             <div class='col-md-6 ' id='editor-container'>
@@ -75,12 +75,17 @@
                     </span>
                 </div>
                 <div id='editor'>console.log("hello world");</div>
+                <!-- <div id='problem_title' style='display:none'>{% if problem_title %} {{ problem_title  }} {% endif %}</div> -->
             </div>
 
             <!--Code Description-->
             <div class='col-md-6' id='description-container'>
+              {% if problem_title %}
+                <h2 id='problem_title'>{{ problem_title }}</h2>
+              {% else %}
                 <h2>Reverse String</h2>
                 <hr>
+              {% endif %}
 
                 <div class='attributes'>
                     <span> Difficulty:<span class='difficulty'>Easy</span></span>
@@ -171,8 +176,12 @@ sd
 <!--Footer-->
 <footer>
     <div class='submission-bar'>
-        <button class="btn run">Run Code <i class="fas fa-play"></i></button>
-        <button class="btn submit">Submit <i class="fas fa-vote-yea"></i></button>
+        <form id='user_submission' action='test/' method='POST'>
+            {% csrf_token %}  
+            <input type='hidden' name='hidden' value='hey'/>
+            <!-- <button class="btn run">Run Code <i class="fas fa-play"></i></button> -->
+            <button class="btn submit" name='submit' value='hello'>Submit <i class="fas fa-vote-yea"></i></button>
+        </form>
     </div>
 
     <div>
