@@ -7,6 +7,4 @@ from .views import *
 urlpatterns = [
     path('', playground, name='playground'),
     path('<int:prob_id>', editor, name='editor'),
-    path('test/', test, name='test')
-
 ]

@@ -28,30 +28,8 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
-problem_data= Problem.objects.values()
-logging.info(problem_data)
-
-
-
-
-def test(request):
-    response= request.POST
-    
-    if request.method == "GET":
-        return render(request, 'editor/editor.html',context)
-    elif request.method == "POST":
-        #database
-
-        return JsonResponse(response)
-
-    #return HttpsResponse("hello")
-
-
-
-
-############################################
-
-
+#roblem_data= Problem.objects.values()
+#logging.info(problem_data)
 
 
 def editor(request, prob_id):
@@ -72,13 +50,14 @@ def editor(request, prob_id):
         context = {
             "title": "Editor",
             "problem_title": problem.title,
+            "problem_description": problem.description,
             "has": {"editor":"yes"}
         }
 
         logging.info(problem.title)
+        logging.info(problem.description)
 
         return render(request, 'editor/editor.html', context)
-
 
 
     elif request.method == "POST":
@@ -94,3 +73,6 @@ def playground(request):
         "has": {"editor":"yes"}
     }
     return render(request, 'editor/editor.html', context)
+
+
+
