@@ -6,7 +6,7 @@ This guide describes how to set up and run a Django server locally to contribute
 ## Prerequisites
 - Windows subsystems for Linux (for windows users)
 - Git
-- Python 3
+- 🐍Python 3
 - pip
 
 _NOTE: If you have both python 2 & 3 installed when following this guide you should be explicit and use `python3` instead of `python` & `pip3` instead of `pip`_
@@ -19,19 +19,17 @@ _NOTE: If you have both python 2 & 3 installed when following this guide you sho
    Using virtualenv lets you be explicit about what modules your project is dependent on ensuring all users are working in the same environment.
 
 _NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "bash"_   
-1. Install virtualenv
-`sudo pip install virtualenv`
 
-2. Make a folder to store virtual environments
+1. Make a folder to store virtual environments
 `mkdir ~/virtualenvironments`
 
-3. Create new virtual environment
-`virtualenv ~/virtualenvironments/<insert project name here>`
+2. Create new virtual environment
+`python -m venv ~/virtualenvironments/<insert project name here>`
 
-4. Activate a virtual environment
+3. Activate a virtual environment
 `source ~/virtualenvironments/<insert project name here>/bin/activate`
 
-5. To exit virtualenv
+4. To exit virtualenv
 `deactivate`
 
 
@@ -66,4 +64,9 @@ _alternatively you can create a new branch for each feature_
 4. `Push` new feature to your github
 
 5. Open pull request on [this repo](https://github.com/johnpaulkiser/uni-code)'s `dev` branch
+
+
+## Quick Django commands
+### Make database migrations
+`python manage.py makemigrations` then `python manage.py migrate`
 

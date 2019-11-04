@@ -1,9 +1,4 @@
-#########################################################  
-############ Convert Query Set to Dictionary ############
-#########################################################
-
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
@@ -28,8 +23,9 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
-#roblem_data= Problem.objects.values()
-#logging.info(problem_data)
+problem_data= Problem.objects.values()
+logging.info(problem_data)
+
 
 
 def editor(request, prob_id):
@@ -38,7 +34,6 @@ def editor(request, prob_id):
     with appropriate data
     '''
 
-    response= request.POST
 
     if request.method == "GET":
         try:
@@ -51,6 +46,7 @@ def editor(request, prob_id):
             "title": "Editor",
             "problem_title": problem.title,
             "problem_description": problem.description,
+            "id": prob_id,
             "has": {"editor":"yes"}
         }
 
@@ -60,11 +56,12 @@ def editor(request, prob_id):
         return render(request, 'editor/editor.html', context)
 
 
-    elif request.method == "POST":
-        #database
-        return JsonResponse(response)
 
-    
+    if request.method == "POST":
+        print(prob_id)        
+        response = request.POST
+        #Call to code eval here
+        return JsonResponse(response)
 
 
 def playground(request):

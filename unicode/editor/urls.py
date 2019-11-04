@@ -1,8 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import *
-
-
+from .views import editor, playground
 
 urlpatterns = [
     path('', playground, name='playground'),
