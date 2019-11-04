@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
 def register(request):
+
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method == 'POST': # user is submitting a registry form
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():
@@ -18,6 +22,7 @@ def register(request):
             
     else:
         registration_form = UserRegistrationForm()
+
     return render(request, 'users/register.html', {'form' : registration_form})
 
 
