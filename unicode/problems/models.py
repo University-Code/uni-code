@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 
 ''' Models that represent a unicode problem'''
 
+DATATYPE_CHOICES = (
+    ('string', 'String'),
+    ('int', 'Int'),
+    ('float', 'Float'),
+    ('array', 'Array'),
+    ('matrix', 'Matrix'),
+    ('linkedlist', 'Linked List')
+)
 
 class Problem(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -11,7 +19,7 @@ class Problem(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     datatype = models.CharField(max_length=10)
     example_solution = models.CharField(max_length=1000)
-    datatype = models.CharField(max_length=10)
+    datatype = models.CharField(max_length=15, choices=DATATYPE_CHOICES, default='string')
 
     def __str__(self):
         return self.title
