@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.db import models
 from problems.models import Problem
 from django.core import serializers
+from eval_engine.services import eval_setup
 import logging, logging.config
 import sys
 
@@ -58,7 +59,10 @@ def editor(request, prob_id):
     if request.method == "POST":
         print(prob_id)        
         response = request.POST
-        #Call to code eval here
+        #Make user submission object
+        
+        submission_id = 1
+        eval_setup(1)
         return JsonResponse(response)
 
 
