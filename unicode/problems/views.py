@@ -27,6 +27,7 @@ def create_problem(request):
         'problem_form': problem_form,
         'testcase_form': testcase_form
     }
+
     if request.method == 'GET':
         return render(request, 'problems/create.html', context)
 
