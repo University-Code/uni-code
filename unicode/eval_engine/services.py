@@ -1,4 +1,8 @@
 import requests
+from editor.models import UserSubmission
+from problems.models import Problem
+from problems.models import ProblemTestCase
+
 
 lang = {
     'C': 4,
@@ -27,20 +31,11 @@ def eval_engine(source, lang, test_in, test_out):
 
 
 def eval_setup(submission_id):
-
-    language = 'Python'
-    code = "print('yo')"
-    sub_id = '12'
-    submission = {
-        'source': {
-            'language': lang[language],
-            'code': code
-            },
-        'submission_id': sub_id
-        }
+    sub = UserSubmission.objects.get(id = submission_id)
+    source = 
 
     for case in test_case:
-        eval_object = eval_engine(submission['source']['code'], submission['source']['language'], [], 'yo')
+        eval_object = eval_engine(submission['source']['code'], lang[language], [], 'yo')
     if 'Error' in eval_object['status']['description']:
         print('Compile Failed')
     else:
