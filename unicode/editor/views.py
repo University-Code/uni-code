@@ -37,7 +37,6 @@ def editor(request, prob_id):
     with appropriate data
     '''
 
-
     if request.method == "GET":
         try:
             problem = Problem.objects.get(pk=prob_id)
@@ -58,7 +57,9 @@ def editor(request, prob_id):
 
         return render(request, 'editor/editor.html', context)
 
-
+    '''
+    User Code Submission 
+    '''
     if request.method == "POST":
         response = request.POST
 
@@ -71,6 +72,7 @@ def editor(request, prob_id):
         user_submission = UserSubmission(submitter=current_user, problem=problem, submission=code, language=language)
         test_cases= ProblemTestCase.objects.filter(problem=problem)
         submission= {"user_submission": user_submission, "test_cases":test_cases}
+        #submission.save() ---> NOT saving into database until complely tested
         
         return JsonResponse(eval_setup(submission))
 

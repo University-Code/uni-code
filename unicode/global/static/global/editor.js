@@ -1,5 +1,4 @@
 $(document).ready(()=>{ 
-    //Changes color for difficulty  
     difficultyColor()
     formatDescription()
 
@@ -82,6 +81,7 @@ function languageSelection(option){
     return select
 }
 
+//Changes color of question difficulty text
 function difficultyColor(){
     console.log('hello')
     difficulty= $('.difficulty').html().toLowerCase()
@@ -186,10 +186,12 @@ function userSubmission(editor){
 //Converts TItle Name to Function Name based on language
 function titleToFunctionName(string,language){
     if(language=="Python"){
+        //Under score format
         string=string.toLowerCase()
         functionName= string.split(" ").join("_")
     }
     else{
+        //Camel case format
         string= string.split(" ").map(x=> x.charAt(0).toUpperCase() + x.slice(1)).join("")
         functionName= string.charAt(0).toLowerCase() +string.slice(1)
     }
@@ -210,6 +212,7 @@ function formatDescription(){
    //Breaks up description into list by every other period
    descriptionList=description.match(/[^.]+.[^.]+/g);
 
+   //Displays description in html
    descriptionList.forEach(element => {
        $('.description').append(`<div class='description-sentence'> ${element} </div>`)
    });

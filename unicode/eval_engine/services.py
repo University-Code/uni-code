@@ -1,4 +1,5 @@
 import requests
+from django.conf import settings
 
 lang = {
     'C': 4,
@@ -11,10 +12,9 @@ lang = {
     'Python': 34,
     'Ruby': 38
 }
-#print('hello')
 
 def eval_engine(source, lang, test_in, test_out):
-    url = 'http://159.89.93.145:3000/submissions/?base64_encoded=false&wait=true'
+    url = settings.CODE_EVAL_API_ENDPOINT   # wait=true makes the API call synchronous, halving the number of requests needed
     params = {
         'source_code': source,
         'language_id': lang,
@@ -33,6 +33,9 @@ def eval_setup(submission):
     source_code= submission_info.submission
     language= submission_info.language
     
+    '''
+    Collects all test case statuses in one object
+    '''
     
     result={}
     index=0
@@ -51,7 +54,8 @@ def eval_setup(submission):
             status='fail'
         else:
             status='pass'
-
+        
+        #Adds test case object to result every iteration
         result[index]=({"test_input":test_input,"test_output":test_output,"status":status})
         index+=1
     return result
