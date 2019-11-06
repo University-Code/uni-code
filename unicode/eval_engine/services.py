@@ -1,5 +1,5 @@
 import requests
-from django.conf import settings
+from . import settings
 
 lang = {
     'C': 4,
@@ -12,9 +12,8 @@ lang = {
     'Python': 34,
     'Ruby': 38
 }
-
 def eval_engine(source, lang, test_in, test_out):
-    url = settings.CODE_EVAL_API_ENDPOINT   # wait=true makes the API call synchronous, halving the number of requests needed
+    url = settings.CODE_EVAL_REQUEST_ENDPOINT   # wait=true makes the API call synchronous, halving the number of requests needed
     params = {
         'source_code': source,
         'language_id': lang,

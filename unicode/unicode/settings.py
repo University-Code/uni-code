@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CODE_EVAL_API_ENDPOINT='http://159.89.93.145:3000/submissions/?base64_encoded=false&wait=true'   
-
-
 # Application definition
 
 INSTALLED_APPS = [
