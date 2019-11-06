@@ -53,6 +53,7 @@ $(document).ready(()=>{
 //******* FUNCTIONS******//
 //***********************//
 
+//Converts Language to Ace Editor Format
 function languageSelection(option){
     option= option.toLowerCase()
     var select='javascript';
@@ -63,6 +64,15 @@ function languageSelection(option){
             break;
         case "c#":
             select="csharp"
+            break;
+        case "python":
+            select='python'
+            break;
+        case "java":
+            select='java'
+            break;
+        case "clojure":
+            select='clojure'
             break;
         default:
             select=option
@@ -132,25 +142,44 @@ function boilerPlateCode(functionName){
 function userSubmission(editor){
 
     //Collects data for Judge API
-    var codingLanguage= $('.language').val()
+    var codingLanguage= $('.select-language').val()
     var userCode=editor.getValue() 
         
     $.ajax({
-    type: 'post',
-    url: '', //Same page
-    data: {
-        
-        language: codingLanguage,
-        code: userCode,
-        csrfmiddlewaretoken: window.CSRF_TOKEN
+        type: 'post',
+        url: '', //Same page
+        data: {
+            language: codingLanguage,
+            code: userCode,
+            csrfmiddlewaretoken: window.CSRF_TOKEN
+        },
+        dataType: 'json',
+        success: function (response) {
 
-    },
-    dataType: 'json',
-    success: function (response) {
-        console.log(response)
-        input= response.submission
-        console.log(input)
-    }
+            //Clears Ouput and listed Test Cases from Console
+            $('.test-cases').empty()
+            $('#console').removeClass('collapse')
+            $('.output').empty()
+
+            if(response.error){
+                $('.output').append(`<code> ${response.error} </code>`)
+            }
+            else{
+                console.log('yahh you passed')
+
+                //Loops through test cases and displays them based on pass/fail
+                Object.keys(response).forEach(key => {
+                    testCaseInput= response[key].test_input
+                    testCaseOutput= response[key].test_output
+                    response[key].status=='pass'? status='fas fa-check': status='fas fa-times'
+                    $('.test-cases').append(`<div>
+                                                <code> ${testCaseOutput}</code>
+                                                <span class='status'> <i class="${status}"></i></span><hr>
+                                            </div>`)
+                });
+            }
+                
+        }
     });
 }
 

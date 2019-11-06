@@ -11,7 +11,7 @@ lang = {
     'Python': 34,
     'Ruby': 38
 }
-
+#print('hello')
 
 def eval_engine(source, lang, test_in, test_out):
     url = 'http://159.89.93.145:3000/submissions/?base64_encoded=false&wait=true'
@@ -26,22 +26,32 @@ def eval_engine(source, lang, test_in, test_out):
     return eval_output
 
 
-def eval_setup(submission_id):
+def eval_setup(submission):
+    submission_info= submission['user_submission']
+    test_cases= submission['test_cases']
 
-    language = 'Python'
-    code = "print('yo')"
-    sub_id = '12'
-    submission = {
-        'source': {
-            'language': lang[language],
-            'code': code
-            },
-        'submission_id': sub_id
-        }
+    source_code= submission_info.submission
+    language= submission_info.language
+    
+    
+    result={}
+    index=0
+    for case in test_cases:
+        status=""
+        test_input=case.test_input
+        test_output= case.test_output
+        eval_object = eval_engine(source_code, lang[language], test_input, test_output)
+        print(eval_object)
 
-    for case in test_case:
-        eval_object = eval_engine(submission['source']['code'], submission['source']['language'], [], 'yo')
-    if 'Error' in eval_object['status']['description']:
-        print('Compile Failed')
-    else:
-        print(eval_object['status']['description'])
+        #Checks for error
+        if 'Error' in eval_object['status']['description']:
+            error= eval_object['status']['description']
+            return {'error': error}
+        elif eval_object['status']['description']=="Wrong Answer":
+            status='fail'
+        else:
+            status='pass'
+
+        result[index]=({"test_input":test_input,"test_output":test_output,"status":status})
+        index+=1
+    return result

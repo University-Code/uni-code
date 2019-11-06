@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.db import models
-from problems.models import Problem
+from problems.models import Problem, ProblemTestCase
+from editor.models import UserSubmission
+from django.contrib.auth.models import User
 from django.core import serializers
 from eval_engine.services import eval_setup
 import logging, logging.config
@@ -24,8 +26,8 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
-problem_data= Problem.objects.values()
-logging.info(problem_data)
+#problem_data= Problem.objects.values()
+#logging.info(problem_data)
 
 
 
@@ -51,21 +53,26 @@ def editor(request, prob_id):
             "has": {"editor":"yes"}
         }
 
-        logging.info(problem.title)
-        logging.info(problem.description)
+        #logging.info(problem.title)
+        #logging.info(problem.description)
 
         return render(request, 'editor/editor.html', context)
 
 
-
     if request.method == "POST":
-        print(prob_id)        
         response = request.POST
-        #Make user submission object
+
+        problem = Problem.objects.get(pk=prob_id)
+        current_user= request.user
+        language= response['language']
+        code= response['code']
         
-        submission_id = 1
-        eval_setup(1)
-        return JsonResponse(response)
+        #Make user submission object
+        user_submission = UserSubmission(submitter=current_user, problem=problem, submission=code, language=language)
+        test_cases= ProblemTestCase.objects.filter(problem=problem)
+        submission= {"user_submission": user_submission, "test_cases":test_cases}
+        
+        return JsonResponse(eval_setup(submission))
 
 
 def playground(request):
