@@ -54,8 +54,8 @@
                                 </div>
                             </div>
                         {% else %}
-                            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a> 
-                            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                            <a class="nav-link register-login" href="{% url 'login' %}">Login</a> 
+                            <a class="nav-link register-login" href="{% url 'register' %}">Register</a>
                         {% endif %}                 
                     </div>
 
@@ -95,7 +95,7 @@
     </div>
 
     <!--Main Content-->
-    <div id='main'class='container' >
+    <div class='container' >
       
         {% if messages %}
                 {% for message in messages %}
@@ -118,7 +118,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-resize/1.1/jquery.ba-resize.js'></script>
     {% if has.editor %}
-        <script src="{% static 'global/editor.js' %}"></script>
+    <script src="{% static 'global/editor.js' %}"></script>
+    {% elif has.dummy %}
+    <script src="{% static 'global/dummy_editor.js' %}"></script>
     {% endif %}
     
     <script src="{% static 'global/base.js' %}"></script>

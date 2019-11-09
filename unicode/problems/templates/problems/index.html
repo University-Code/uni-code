@@ -1,76 +1,69 @@
 {% extends "global/base.html" %}
 {% load static %}
 {% block content %}
-<div class="hero">
-    <div class="row">
-        <div class="col-md-6 center-left">
-            <div>
-                <h1>
-                    Lorem ipsum dolor sit amet, consect elit 
-                    <span class="highlight">adipiscing</span> 
-                </h1>
-                <p class="hero-text">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem 
-                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa 
-                    quae ab illo inventore veritatis  <a href="#" class="link">Duis Aute</a>,
-                    et quasi architecto beatae vitae dicta sunt explicabo.
-                </p>
-            </div>
-        </div> 
-        <div class="col-md-6 center-right">
-            <div class="landing-editor">
-                    <div id="editor">some text</div>
-                    <script>
-                        var editor = ace.edit("editor");
-                    </script>
-            </div>
-        </div>
-        
-    </div>
 
-</div>
-
-<div class="second-header">
-    <div class="section-heading text-center">
-        <h2 class="bold">Lorem ipsum dolor sit</h2>
+<div class="hero row">
+    <div class="col-md-6 center-left">
+        <div>
+            <h1>
+                Lorem ipsum dolor sit amet, consect elit
+                <span class="highlight">adipiscing</span>
+            </h1>
+            <p class="hero-text">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis <a href="#" class="link">Duis Aute</a>,
+                et quasi architecto beatae vitae dicta sunt explicabo.
+            </p>
+        </div>
     </div>
-    <div class="row gap-y text-center text-md-left">
-        <div class="col-md-3 py-3 rounded text-center">
-            <h4 class="text-primary bold">90%</h4>
-            <h6>90% of the people first check out online reviews before making a purchase</h6>
-        </div>
-        <div class="col-md-3 py-3 rounded text-center">
-            <h4 class="text-primary bold">72%</h4>
-            <h6>72% of the people will only interact with brands that have positive reviews</h6>
-        </div>
-        <div class="col-md-3 py-3 rounded text-center">
-            <h4 class="text-primary bold">SEO</h4>
-            <h6>Online reviews help boost your search engine visibility and website visits</h6>
-        </div>
-        <div class="col-md-3 py-3 rounded text-center">
-            <h4 class="text-primary bold">31%</h4>
-            <h6>People spend 31% more in a business that has an excellent score</h6>
-        </div>
+    <div class="col-md-6 center-right">
+        <div id="dummy-editor">some text</div>
     </div>
 </div>
 
-<div class="card-links">
+<div class="container">
+    <div class="second-header">
+        <div class="section-heading text-center">
+            <h2 class="bold">Lorem ipsum dolor sit</h2>
+        </div>
+        <div class="row gap-y text-center text-md-left">
+            <div class="col-md-3 py-3 rounded text-center">
+                <h4 class="text-primary bold">90%</h4>
+                <h6>90% of the people first check out online reviews before making a purchase</h6>
+            </div>
+            <div class="col-md-3 py-3 rounded text-center">
+                <h4 class="text-primary bold">72%</h4>
+                <h6>72% of the people will only interact with brands that have positive reviews</h6>
+            </div>
+            <div class="col-md-3 py-3 rounded text-center">
+                <h4 class="text-primary bold">SEO</h4>
+                <h6>Online reviews help boost your search engine visibility and website visits</h6>
+            </div>
+            <div class="col-md-3 py-3 rounded text-center">
+                <h4 class="text-primary bold">31%</h4>
+                <h6>People spend 31% more in a business that has an excellent score</h6>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-links mb-2">
         <div class="row">
             <div class="col-sm-4">
                 <div class="card-item">
                     <a href="#">
                         <div class="img-wrapper">
-                                <img src='{% static "global/images/card1.jpg" %}'>
+                            <img src='{% static "global/images/card1.jpg" %}'>
                         </div>
                         <div class="info-wrapper">
                             <div>
-                                <p class="card-title">Ogun iotus</p>
-                                <p class="card-text">At vero eos et accusamus et iusto dignissimos</p>
+                                <p class="card-title">Hone your coding skills!</p>
+                                <p class="card-text">Browse user submitted problems to practice algorithms</p>
                                 <!-- <a class="link"  href="./ogun.html">View Project</a> -->
                             </div>
                         </div>
                     </a>
-                    
+
                 </div>
             </div> <!-- col-sm-4 -->
 
@@ -78,16 +71,16 @@
                 <div class="card-item">
                     <a href="#">
                         <div class="img-wrapper">
-                                <img src='{% static "global/images/card2.png" %}'>
+                            <img src='{% static "global/images/card2.png" %}'>
                         </div>
                         <div class="info-wrapper">
                             <div>
-                                <p class="card-title">Ogun iotus</p>
+                                <p class="card-title">Join the community!</p>
                                 <p class="card-text">Temporibus autem quibusdam et aut officiis</p>
                             </div>
                         </div>
                     </a>
-                    
+
                 </div>
             </div> <!-- col-sm-4 -->
 
@@ -99,7 +92,7 @@
                         </div>
                         <div class="info-wrapper">
                             <div>
-                                <p class="card-title">Hic tenetur</p>
+                                <p class="card-title">Find a mentor</p>
                                 <p class="card-text">sapiente delectus, ut aut reiciendis voluptatibus</p>
                             </div>
                         </div>
@@ -108,18 +101,22 @@
             </div> <!-- col-sm-4 -->
 
         </div>
+
     </div>
 
 
-        
+
     <div class="row">
         <div class="col-md-10 offset-sm-1 center mt-5">
             <p class="hero-text text-center">
-                <a href ="" class="link">Sign Up</a> to become a <span class="bold">Better Coder</span> & <span class="bold">Better Student</span>
+                <a href="" class="link">Sign Up</a> to become a <span class="bold">Better Coder</span> & <span
+                    class="bold">Better Student</span>
             </p>
-            
+
         </div>
     </div>
-    
+</div>
+
+
 
 {% endblock %}
