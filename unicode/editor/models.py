@@ -11,7 +11,9 @@ Language_Options = {
     ('Python', 'Python'),
     ('Clojure', 'Clojure')
 }
+
 # Create your models here.
+
 class UserSubmission(models.Model):
     submitter = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
@@ -23,3 +25,4 @@ class UserSubmission(models.Model):
 
     def __str__(self):
         return f'{self.submitter} - {self.problem} - {self.language} - ({self.created})'
+

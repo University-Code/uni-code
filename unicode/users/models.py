@@ -18,3 +18,5 @@ class Profile(models.Model):
     school = models.CharField(max_length=50)
     graduation_year = models.IntegerField()
 
+        
+        

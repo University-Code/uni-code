@@ -12,8 +12,8 @@ class ProblemForm(forms.ModelForm):
                    'example_solution' : forms.Textarea(attrs=ATTRS)
                   }
 
-#class TestCaseForm(forms.ModelForm):
-#
-#    class Meta:
-#        model = ProblemTestCase
-#        fields = ('test_input', 'test_output')
+class ProblemTestCaseForm(forms.ModelForm):
+
+    class Meta:
+        model = ProblemTestCase
+        fields = ('test_input', 'test_output')
