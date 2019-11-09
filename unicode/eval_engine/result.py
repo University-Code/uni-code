@@ -51,3 +51,4 @@ class RunResult(BaseAPIResult):
             else:
                 flattened_dict[key] = value
         return flattened_dict
+

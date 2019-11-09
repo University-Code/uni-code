@@ -12,6 +12,8 @@ Language_Options = {
     ('Clojure', 'Clojure')
 }
 
+# Create your models here.
+
 class UserSubmission(models.Model):
     submitter = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
@@ -19,6 +21,8 @@ class UserSubmission(models.Model):
     language = models.CharField(max_length=50, choices=Language_Options, default='Java')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return f'{self.submitter} - {self.problem} - {self.language} - ({self.created})'
+
