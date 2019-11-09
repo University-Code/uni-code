@@ -8,8 +8,8 @@ class ProblemForm(forms.ModelForm):
         fields = ('title', 'description', 'datatype', 'example_solution')
 
 
-#class TestCaseForm(forms.ModelForm):
-#
-#    class Meta:
-#        model = ProblemTestCase
-#        fields = ('test_input', 'test_output')
+class ProblemTestCaseForm(forms.ModelForm):
+
+    class Meta:
+        model = ProblemTestCase
+        fields = ('test_input', 'test_output')
