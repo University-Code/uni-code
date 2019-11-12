@@ -1,5 +1,5 @@
 import requests
-from . import settings
+from unicode import settings
 
 lang = {
     'C': 4,
@@ -12,49 +12,54 @@ lang = {
     'Python': 34,
     'Ruby': 38
 }
+
 def eval_engine(source, lang, test_in, test_out):
-    url = settings.CODE_EVAL_REQUEST_ENDPOINT   # wait=true makes the API call synchronous, halving the number of requests needed
+    url = settings.CODE_EVAL_API_URL
+    route = '/submissions/?base64_encoded=false&wait=true'   # wait=true makes the API call synchronous, halving the number of requests needed
     params = {
         'source_code': source,
         'language_id': lang,
         'stdin': test_in,
         'expected_output': test_out
     }
-    r = requests.post(url, params=params)
+    r = requests.post(url+route, params=params)
     eval_output = r.json()
     return eval_output
 
 
 def eval_setup(submission):
-    submission_info= submission['user_submission']
-    test_cases= submission['test_cases']
+    submission_info = submission['user_submission']
+    test_cases = submission['test_cases']
 
-    source_code= submission_info.submission
-    language= submission_info.language
+    source_code = submission_info.submission
+    language = submission_info.language
     
     '''
     Collects all test case statuses in one object
     '''
     
-    result={}
-    index=0
+    test_results = {}
+    index = 0
+
     for case in test_cases:
-        status=""
-        test_input=case.test_input
-        test_output= case.test_output
-        eval_object = eval_engine(source_code, lang[language], test_input, test_output)
+        eval_object = eval_engine(source_code, lang[language], case.test_input, case.test_output)
         print(eval_object)
 
         #Checks for error
         if 'Error' in eval_object['status']['description']:
-            error= eval_object['status']['description']
+            error = eval_object['status']['description']
             return {'error': error}
-        elif eval_object['status']['description']=="Wrong Answer":
-            status='fail'
+        elif eval_object['status']['description'] == "Wrong Answer":
+            status = 'fail'
         else:
-            status='pass'
+            status = 'pass'
         
         #Adds test case object to result every iteration
-        result[index]=({"test_input":test_input,"test_output":test_output,"status":status})
-        index+=1
-    return result
+        test_results[index] = {
+                    "test_input": case.test_input,
+                    "test_output": case.test_output,
+                    "status": status
+                }
+        index += 1
+        
+    return test_results
