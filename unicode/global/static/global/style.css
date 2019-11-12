@@ -358,8 +358,12 @@ footer .submission-bar button {
 	color: black;
 }
 
-.example {
-	background-color: rgb(211, 211, 211);
+.description-sentence{
+	padding-bottom:10px;
+}
+
+.example{
+	background-color:rgb(211, 211, 211);
 	box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.418), 0 6px 20px 0 rgba(255, 255, 255, 0.411);
 	padding: 20px;
 }
@@ -497,7 +501,7 @@ code {
 	margin-bottom: 100px;
 }
 
-j .bold, strong {
+.bold, strong {
 	font-weight: 900 !important;
 }
 
