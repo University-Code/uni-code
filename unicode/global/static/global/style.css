@@ -547,11 +547,48 @@ p.hero-text {
 	transition: box-shadow .4s ease-out;
 	cursor: pointer;
 	transition: transform .2s ease-in;
+	margin-top: 5%;
 }
 
 .card-item:hover {
 	box-shadow: -5px 5px #f0f045;
 	transform: translate(3px, -3px);
+}
+
+.problem-card{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0px 5px 5px 0 rgba(18, 17, 24, 0);
+	border-radius: 5px;
+	transition: box-shadow .4s ease-out;
+	cursor: default;
+	transition: transform .2s ease-in;
+}
+
+.problem-card:hover{
+	box-shadow: -5px 5px #f0f045;
+	transform: translate(3px, -3px);
+}
+
+.problem-list-text{
+	margin: 20px; 
+	height: 100%;
+	width: 100%;
+}
+
+.problem-list-text a{
+	color:rgb(25, 29, 33);
+	text-decoration: none;
+	font-size: large;
+	font-weight: 400;
+}
+
+.problem-list-text a:hover{
+	color: #cebe11;
+	text-decoration: none;
+
 }
 
 .img-wrapper {
@@ -563,6 +600,11 @@ p.hero-text {
 
 .info-wrapper {
 	padding: 25px 30px 40px 30px;
+}
+
+.problem-list-text span{
+	color: rgb(82, 66, 89);
+	float: right;
 }
 
 .card-title {
@@ -582,3 +624,29 @@ p.hero-text {
 	color: #887F95;
 	margin-bottom: 40px;
 }
+
+.upvote{
+	margin-left: 5%;
+	cursor: pointer;
+}
+
+.upvote{
+	margin-left: 5%;
+	cursor: pointer;
+	color: #38b47e;
+}
+
+
+
+/* PAGINATION STYLING */
+
+.pagination>li>a,
+.pagination>li>span {
+	border: none;
+	color: #38b47e;
+	box-shadow: 0 4px 2px -0.8px rgba(0,0,0,0.4);
+}
+.page-item.active .page-link {
+    background-color: #38b47e;
+}
+

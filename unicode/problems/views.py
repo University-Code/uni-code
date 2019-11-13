@@ -46,7 +46,7 @@ def create_problem(request):
             return render(request, 'problems/create.html', context)
         
         problem = problem_form.save(commit=False)
-        problem.user = request.user
+        problem.creator = request.user
         problem.save()
 
         for form in testcase_form:
