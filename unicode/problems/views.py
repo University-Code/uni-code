@@ -5,6 +5,7 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Count
 from .models import Problem, ProblemTestCase
 from .forms import ProblemForm
 
@@ -76,11 +77,13 @@ def problems(request):
 
     problems = []
     
+    #appends users upvoted content if they are logged in
     if request.user.is_authenticated:
-        for problem in Problem.objects.all():
+        # sorts by number of upvotes
+        for problem in Problem.objects.annotate(Count('upvotes')).order_by('-upvotes__count'):
             problems.append(problem.to_dict(user=request.user))
     else:
-        problems = Problem.objects.all()
+        problems = Problem.objects.annotate(Count('upvotes')).order_by('-upvotes__count')
 
     paginator = Paginator(problems, 10)
     page = request.GET.get('page')
@@ -110,6 +113,6 @@ def upvote_problem(request):
             problem.set_upvoted(user=request.user, upvoted=upvoted)
         except:
             return HttpResponse(response=404)
-        # response for no content
+
         return HttpResponse("upvoted success")
     return HttpResponse("Failure")
