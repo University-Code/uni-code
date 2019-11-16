@@ -12,6 +12,7 @@ DATATYPE_CHOICES = (
     ('linkedlist', 'Linked List')
 )
 
+
 class Problem(models.Model):
     creator = models.ForeignKey(
         User,
@@ -30,14 +31,23 @@ class Problem(models.Model):
     def __str__(self):
         return self.title
 
-    def upvote(self, user):
-        Upvote.objects.create(post=self, user=user)
-
-    def set_upvoted(self, user, *, upvoted):
+    def set_upvoted(self, user, upvoted):
         if upvoted:
             Upvote.objects.get_or_create(problem=self, user=user)
         else:
-            self.upvotes.filter(user=user).delete()
+            self.upvotes.filter(id=user.id).delete()
+
+    def to_dict(self, user):
+        d = {
+            'id': self.id,
+            'title': self.title,
+            'creator': self.creator,
+            'upvotes': self.upvotes.count()
+        }
+        if user.is_authenticated:
+            d['upvoted'] = self.upvotes.filter(id=user.id).count() > 0
+        return d
+
 
 
 class ProblemTestCase(models.Model):
@@ -47,6 +57,8 @@ class ProblemTestCase(models.Model):
 
     def __str__(self):
         return f'{self.problem} testcase {self.id}'
+
+
 
 class Upvote(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)

@@ -8,13 +8,13 @@
     <div class="mb-4">
       <div class="problem-card">
         {% if problem.upvoted %}
-        <i class="fa fa-chevron-up fa-2x upvoted"></i>
+        <i class="fa fa-chevron-up fa-2x upvoted" value='false' prob_id="{{ problem.id }}" onclick="toggleUpvote(this)"></i>
         {% else %}
-        <i class="fa fa-chevron-up fa-2x upvote"></i>
+        <i class="fa fa-chevron-up fa-2x upvote" value='true' prob_id="{{problem.id}}" onclick="toggleUpvote(this)"></i>
         {% endif %}
         <div class="problem-list-text">
-              <a href="{% url 'editor' problem.id %}"> {{ problem.title }} </a>
-              <span> {{ problem.creator }} </span>
+          <a href="{% url 'editor' problem.id %}"> {{ problem.title }} </a>
+          <span> {{ problem.creator }} </span>
         </div>
       </div>
     </div>

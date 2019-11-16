@@ -31,6 +31,7 @@ $(document).ready(()=>{
     editor.session.setMode("ace/mode/python");
     editor.highlightActiveLine = false;
     editor.highlightSelectedWord = false;
+    editor.$blockScrolling = Infinity
     // updateEditor(boilerPlate);
     var counter = 0;
     var writtenText = "";
