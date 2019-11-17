@@ -10,6 +10,8 @@ from django.core import serializers
 from eval_engine.services import eval_setup
 import logging, logging.config
 import sys
+from termcolor import colored, cprint 
+
 
 LOGGING = {
     'version': 1,
@@ -62,19 +64,21 @@ def editor(request, prob_id):
     '''
     if request.method == "POST":
         response = request.POST
+        print(response)
 
         problem = Problem.objects.get(pk=prob_id)
         current_user= request.user
         language= response['language']
         code= response['code']
-        
+      
         #Make user submission object
         user_submission = UserSubmission(submitter=current_user, problem=problem, submission=code, language=language)
         test_cases= ProblemTestCase.objects.filter(problem=problem)
         submission= {"user_submission": user_submission, "test_cases":test_cases}
-        #submission.save() ---> NOT saving into database until complely tested
-        
-        return JsonResponse(eval_setup(submission))
+        #submission.save() ---> NOT saving into database until completly tested
+        eval_data = eval_setup(submission)
+        logging.info(colored(eval_data,"blue")) 
+        return JsonResponse(eval_data)
 
 
 def playground(request):

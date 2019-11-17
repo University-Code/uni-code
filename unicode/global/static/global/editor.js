@@ -2,17 +2,22 @@ $(document).ready(()=>{
     difficultyColor()
     formatDescription()
 
-    language= $( ".select-language" ).val();
-    problemTitle= $('#problem_title').html()
-    boilerPlate= boilerPlateCode(problemTitle);
+    let language= $( ".select-language" ).val();
+    let problemTitle= $('#problem_title').html()
+    let boilerPlate= boilerPlateCode(problemTitle);
         
 
     //Initializes Editor
-    editor = ace.edit("editor");
+    const editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/javascript");
     editor.setValue(boilerPlate['javascript'],0);
 
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+     });
     //Changes Language based on selection
     $('.select-language').change(()=>{
         language= $('.select-language').val()
@@ -139,12 +144,42 @@ function boilerPlateCode(functionName){
 
 }
 
+function convert_to_single_line(code) {
+    // the lesson here is to NEVER TARGET IE WITHOUT JQUERY
+    if (window.is_ie_lt9) {
+        code = code.replace(/(\r\n|\r|\n)/g, '\n');
+    }
+    var ix;
+    var lines = code.trimRight() // keep left indent
+                    .replace(/\\/g, '\\\\') //  escape all \
+                    .replace(/"""/g, '\\"\\"\\"') // escape """
+                    .split('\n');
+    var first_indent;
+    for (ix = 0; ix < lines.length; ++ix) {
+        if (first_indent === undefined) {
+            first_indent = lines[ix].match(/^\s*/);
+        }
+        if (true) {
+            lines[ix] = lines[ix].replace(new RegExp('^'+first_indent), '');
+        }
+    }
+    // lines.unshift('"');
+    // lines.push('"');
+		return lines.join('\\n')
+}
+
+
+
 function userSubmission(editor){
 
     //Collects data for Judge API
     var codingLanguage= $('.select-language').val()
+    
     var userCode=editor.getValue() 
-        
+    
+    if(codingLanguage=='Python')
+        userCode= convert_to_single_line(userCode)
+    console.log(userCode)
     $.ajax({
         type: 'post',
         url: '', //Same page
@@ -155,36 +190,14 @@ function userSubmission(editor){
         },
         dataType: 'json',
         success: function (response) {
-
-            //Clears Ouput and listed Test Cases from Console
-            $('.test-cases').empty()
-            $('#console').removeClass('collapse')
-            $('.output').empty()
-
-            if(response.error){
-                $('.output').append(`<code> ${response.error} </code>`)
-            }
-            else{
-                console.log('yahh you passed')
-
-                //Loops through test cases and displays them based on pass/fail
-                Object.keys(response).forEach(key => {
-                    testCaseInput= response[key].test_input
-                    testCaseOutput= response[key].test_output
-                    response[key].status=='pass'? status='fas fa-check': status='fas fa-times'
-                    $('.test-cases').append(`<div>
-                                                <code> ${testCaseOutput}</code>
-                                                <span class='status'> <i class="${status}"></i></span><hr>
-                                            </div>`)
-                });
-            }
-                
+            displayConsoleOutput(response)
         }
     });
 }
 
 //Converts TItle Name to Function Name based on language
 function titleToFunctionName(string,language){
+    let functionName=''
     if(language=="Python"){
         //Under score format
         string=string.toLowerCase()
@@ -207,10 +220,10 @@ $(function () {
 function formatDescription(){
 
    //Get description -> replace escape strings with empty character -> trim whitespace
-   var description= $('.description div').first().html().replace(/(\r\n|\n|\r)/gm, "").trim();
+   let description= $('.description div').first().html().replace(/(\r\n|\n|\r)/gm, "").trim();
 
    //Breaks up description into list by every other period
-   descriptionList=description.match(/[^.]+.[^.]+/g);
+   let descriptionList=description.match(/[^.]+.[^.]+/g);
 
    //Displays description in html
    descriptionList.forEach(element => {
@@ -219,5 +232,45 @@ function formatDescription(){
 
    //Delete original description
    $('.description div').first().empty()
+}
+
+function displayConsoleOutput(response){
+                //Clears Ouput and listed Test Cases from Console
+                $('.test-cases').empty()
+                $('#console').removeClass('collapse')
+                $('.output').empty()
+    
+                if(response.error){
+                    $('.output').append(`<code> ${response.error} </code>`)
+                    return
+                }
+                else{
+                    console.log('yahh you passed')
+                    let percentage=0
+                    total=0
+                    //Loops through test cases and displays them based on pass/fail
+                    Object.keys(response).forEach(key => {
+                        let testCaseInput= response[key].test_input
+                        let testCaseOutput= response[key].test_output
+                        response[key].status=='pass'? status='fas fa-check': status='fas fa-times'
+
+                        if(response[key].status== 'pass')
+                            percentage++                        
+                        $('.test-cases').append(`<div>
+                                                    <code> 
+                                                        <span style='color:black'>Input</span>
+                                                        ${testCaseInput} 
+                                                        <i class="fas fa-angle-double-right" style='color:black'></i>
+                                                        <span style='color:black'> Output </span>
+                                                        ${testCaseOutput}
+                                                    </code>
+                                                    
+                                                    <span> <i class='${status}'></i> </span>`)
+                        total++;
+                    })
+                    console.log(percentage)
+                    console.log(`Your soloution is + ${(percentage/total)*100}% correct!`)
+                }
+
 }
 
