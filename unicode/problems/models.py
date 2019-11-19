@@ -44,8 +44,11 @@ class Problem(models.Model):
             'creator': self.creator,
             'upvotes': self.upvotes.count()
         }
+
+        # d['upvoted'] == True when the user has upvoted this problem 
         if user.is_authenticated:
             d['upvoted'] = self.upvotes.filter(id=user.id).count() > 0
+            
         return d
 
 
