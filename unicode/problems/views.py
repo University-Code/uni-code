@@ -8,7 +8,11 @@ from .models import Problem, ProblemTestCase
 from .forms import ProblemForm
 
 def index(request):
-    return render(request, 'problems/index.html', {"title": "Welcome to Uni-code"})
+    context = {
+            "title": "Welcome to Uni-Code",
+            "has": {"dummy":"yes"}
+        }
+    return render(request, 'problems/index.html', context)
 
 @login_required  
 def create_problem(request):
@@ -27,6 +31,7 @@ def create_problem(request):
         'problem_form': problem_form,
         'testcase_form': testcase_form
     }
+
     if request.method == 'GET':
         return render(request, 'problems/create.html', context)
 
