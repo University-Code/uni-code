@@ -271,7 +271,7 @@ function displayConsoleOutput(response){
                     const consoleOutput= `Your soloution is + ${(percentage/total)*100}% correct!`
                     console.log(consoleOutput)
 
-                    $('.output').append(consoleOutput)
+                    $('. output').append(consoleOutput)
 
                 }
 
