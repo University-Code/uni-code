@@ -1,7 +1,7 @@
 import requests
-from . import settings
+from unicode.settings import CODE_EVAL_API_URL
 import sys 
-from termcolor import colored, cprint 
+#from termcolor import colored, cprint 
 import re
 from ast import literal_eval
 
@@ -18,20 +18,25 @@ language_id = {
     'Python': 34,
     'Ruby': 38
 }
+
+
 def eval_engine(source, language_id, test_in, test_out):
     #Replaces escape string with new line 
     source= source.replace('\\n', '\n') 
     api_test= format_source_code(language_id, source, test_in)
-    print(colored(api_test,"red"))
+   #print(colored(api_test,"red"))
     
-    url = settings.CODE_EVAL_REQUEST_ENDPOINT   # wait=true makes the API call synchronous, halving the number of requests needed
+    url = CODE_EVAL_API_URL   # wait=true makes the API call synchronous, halving the number of requests needed
+    route = '/submissions/?base64_encoded=false&wait=true'
+
     params = {
         'source_code': api_test,
         'language_id': language_id,
         'stdin': test_in,
         'expected_output': test_out
     }
-    r = requests.post(url, params=params)
+
+    r = requests.post(url+route, params=params)
     eval_output = r.json()
     return eval_output
     
