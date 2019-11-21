@@ -8,7 +8,6 @@ from django.core import serializers
 from eval_engine.services import eval_setup
 import logging, logging.config
 import sys
-from termcolor import colored, cprint 
 
 
 LOGGING = {
@@ -32,6 +31,7 @@ logging.config.dictConfig(LOGGING)
 
 
 def editor(request, prob_id):
+    
     ''' 
     Gets the submitted id from url and renders editor.html
     with appropriate data
@@ -75,7 +75,7 @@ def editor(request, prob_id):
         submission= {"user_submission": user_submission, "test_cases":test_cases}
         #submission.save() ---> NOT saving into database until completly tested
         eval_data = eval_setup(submission)
-        logging.info(colored(eval_data,"blue")) 
+        print(eval_data) 
         return JsonResponse(eval_data)
 
 
