@@ -133,3 +133,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'problems'
 LOGIN_URL = 'login'
+
+
+# Andrew's digital ocean IP for Judge0 api endpoint
+CODE_EVAL_API_URL='http://159.89.93.145:3000'  

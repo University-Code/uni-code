@@ -268,8 +268,11 @@ function displayConsoleOutput(response){
                                                     <span> <i class='${status}'></i> </span>`)
                         total++;
                     })
-                    console.log(percentage)
-                    console.log(`Your soloution is + ${(percentage/total)*100}% correct!`)
+                    const consoleOutput= `Your soloution is + ${(percentage/total)*100}% correct!`
+                    console.log(consoleOutput)
+
+                    $('. output').append(consoleOutput)
+
                 }
 
 }
