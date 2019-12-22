@@ -1,18 +1,25 @@
+import json
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Count
 from .models import Problem, ProblemTestCase
 from .forms import ProblemForm
 
+
 def index(request):
+
+    ''' displays the landing page '''
+
     context = {
             "title": "Welcome to Uni-Code",
             "has": {"dummy":"yes"}
         }
     return render(request, 'problems/index.html', context)
+
 
 @login_required  
 def create_problem(request):
@@ -46,7 +53,7 @@ def create_problem(request):
             return render(request, 'problems/create.html', context)
         
         problem = problem_form.save(commit=False)
-        problem.user = request.user
+        problem.creator = request.user
         problem.save()
 
         for form in testcase_form:
@@ -65,13 +72,47 @@ def create_problem(request):
 
 def problems(request):
     ''' 
-    Handles pagination of selectable problems to solve.
+    Handles pagination of list problems to solve.
     '''
 
-    problems = Problem.objects.all()
+    problems = []
+    
+    #appends users upvoted content if they are logged in
+    if request.user.is_authenticated:
+        # sorts by number of upvotes
+        for problem in Problem.objects.annotate(Count('upvotes')).order_by('-upvotes__count'):
+            problems.append(problem.to_dict(user=request.user))
+    else:
+        problems = Problem.objects.annotate(Count('upvotes')).order_by('-upvotes__count')
+
     paginator = Paginator(problems, 10)
     page = request.GET.get('page')
     problems = paginator.get_page(page)
 
     return render(request, 'problems/problem_list.html', {'problems': problems})
 
+
+
+def upvote_problem(request):
+
+    if request.method == 'GET':
+
+        # returns failure message is 
+        if not request.user.is_authenticated:
+            return HttpResponse("not authenticated")
+
+        data = request.GET
+        print('problem', data['prob_id'], data['upvoted'])
+        if data['upvoted'] == "true":
+            upvoted = True
+        else:
+            upvoted = False
+
+        try:
+            problem = Problem.objects.get(pk=data['prob_id'])
+            problem.set_upvoted(user=request.user, upvoted=upvoted)
+        except:
+            return HttpResponse(response=404)
+
+        return HttpResponse("upvoted success")
+    return HttpResponse("Failure")
