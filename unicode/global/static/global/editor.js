@@ -17,6 +17,9 @@ $(document).ready(()=>{
         enableBasicAutocompletion: true,
         enableSnippets: true,
         enableLiveAutocompletion: true,
+        showPrintMargin: false,
+        fontSize: "14px"
+
      });
     //Changes Language based on selection
     $('.select-language').change(()=>{
@@ -193,7 +196,7 @@ function userSubmission(editor){
             $('.confetti').show()
             displayConsoleOutput(response)
             confettiDropdown()
-            setTimeout(()=>{$('.confetti').hide()},5000)
+           // setTimeout(()=>{$('.confetti').hide()},5000)
            
 
         }
@@ -378,12 +381,17 @@ function confettiDropdown(){
         
         // Reset transform matrix
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+
     });
 
     // Fire off another round of confetti
     // if (confetti.length <= 10) initConfetti();
 
     window.requestAnimationFrame(render);
+
+    console.log("hey")
+
     }
 
     //---------Execution--------
