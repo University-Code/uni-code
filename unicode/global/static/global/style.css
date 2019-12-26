@@ -240,9 +240,9 @@ a.register-login {
 }
 
 #editor-container {
-	position: absolute;
+	/* position: absolute;
 	width: 40vw;
-	left: 20px;
+	left: 20px; */
 }
 
 .options-panel {
@@ -333,14 +333,14 @@ footer .submission-bar button {
 /*Descrition */
 
 #description-container {
-	position: absolute;
+	/* position: absolute; */
 	background-color: rgb(238, 236, 236);
 	box-shadow: 0 4px 8px 0 #3397e9, 0 6px 20px 0 #3397e9;
 	padding: 20px;
-	right: 40px;
-	width: 40vw;
-	height: 78vh;
-	top: 110px;
+	/* right: 40px; */
+	/* width: 40vw; */
+	/* height: 78vh; */
+	/* //top: 110px; */
 }
 
 #description-container span {
@@ -651,3 +651,31 @@ p.hero-text {
     background-color: #38b47e;
 }
 
+
+.confetti{
+	/* display:hidden; */
+    position: absolute;
+    top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+
+/* MEDIA QUERIES- DESKTOP */
+@media (min-width: 768px) and (max-width: 2000px) {
+  #editor-container{
+	left:50px;
+  }
+
+}
+
+/* MEDIA QUERIES- MOBILE */
+@media (max-width: 768px) {
+  #editor-container{
+	  margin-top:50px;
+	  padding-bottom:50px;
+  }
+  
+	
+}
+  

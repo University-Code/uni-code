@@ -1,9 +1,59 @@
 {% extends "global/base.html" %}
 
 {% block content %}
+<!--Confetti Dropdown-->
+<canvas class='confetti' id="canvas"></canvas>
+
 <div >
     <div class=' row'>
-            <div class='col-md-6 ' id='editor-container'>
+
+        <!--Code Description-->
+        <div class='col-md-5' id='description-container'>
+            {% if problem_title %}
+            <h2 id='problem_title'>{{ problem_title }}</h2>
+            {% else %}
+            <h2>Reverse String</h2>
+            <hr>
+            {% endif %}
+
+            <div class='attributes'>
+                <span> Difficulty:<span class='difficulty' >Easy</span></span>
+                <span><i>&#128077; 23</i></span>
+                <span><i>&#128078; 6</i></span>
+            </div>
+            <br>
+
+            <div class='description'>
+                <div>
+                    {% if problem_description %}
+                        {{ problem_description }}
+                    {% else %}
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem beatae ducimus
+                        repudiandae perferendis eum architecto quisquam deserunt sit commodi cupiditate dicta
+                    {% endif %}
+                </div>
+            </div>
+
+            <br>
+            
+            <div class='example'>
+                <code>
+                    Given nums = [2, 7, 11, 15], target = 9,
+                    <br><br>
+                    Because nums[0] + nums[1] = 2 + 7 = 9,
+                    <br>
+                    return [0, 1].
+                </code>
+            </div>
+            <br>
+            <div>
+                <span> Total Submissions: <i>435</i>  </span>
+                <span><i class="fas fa-check"></i> Success Rate: <i>45%</i> </span>
+            </div>
+        </div>
+
+        <!--Editor Container-->
+        <div class='col-md-7 ' id='editor-container'>
                 <div class='options-panel'>
                         <select class='select-language'>
                             <option class='language'>JavaScript</option>
@@ -11,11 +61,11 @@
                             <option class='language'>C++</option>
                             
                             <option class='language'>Java</option>
-
+    
                             <option class='language'>Python</option>
-
+    
                             <option class='language'>Clojure </option>
-
+    
                             <option class='language'>C#</option>
                         </select>
                     <span class='settings'>
@@ -24,7 +74,7 @@
                             <div data-toggle="modal" data-target="#exampleModal">
                                 <i data-toggle="tooltip" data-placement="top" title="Theme" class="fas fa-adjust" ></i>
                             </div>
-
+    
                             <!--Theme Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -36,7 +86,7 @@
                                     </button>
                                     </div>
                                     <div class="modal-body">
-
+    
                                         <div class='row'>
                                             <div class='col-md-8'>
                                                 <blockquote>
@@ -44,7 +94,7 @@
                                                     <div id='author'>- Donald Knuth</div>
                                                 </blockquote>
                                             </div>
-
+    
                                             <div class='col-md-4'>
                                                 <select  class='select-theme'>
                                                     <option disabled>Bright</option>
@@ -52,7 +102,7 @@
                                                     <option>GitHub</option>
                                                     <option>XCode</option>
                                                     <option>Tomorrow</option>
-
+    
                                                     <option disabled>Dark</option>
                                                     <option>Monokai</option>
                                                     <option>Chaos</option>
@@ -69,64 +119,17 @@
                                 </div>
                                 </div>
                             </div>
-
+    
                         </span>
                     </span>
                 </div>
                 <div id='editor'>console.log("hello world");</div>
                 <!-- <div id='problem_title' style='display:none'>{% if problem_title %} {{ problem_title  }} {% endif %}</div> -->
-            </div>
-
-            <!--Code Description-->
-            <div class='col-md-6' id='description-container'>
-              {% if problem_title %}
-                <h2 id='problem_title'>{{ problem_title }}</h2>
-              {% else %}
-                <h2>Reverse String</h2>
-                <hr>
-              {% endif %}
-
-                <div class='attributes'>
-                    <span> Difficulty:<span class='difficulty' >Easy</span></span>
-                    <span><i>&#128077; 23</i></span>
-                    <span><i>&#128078; 6</i></span>
-                </div>
-                <br>
-
-                <div class='description'>
-                    <div>
-                        {% if problem_description %}
-                            {{ problem_description }}
-                        {% else %}
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem beatae ducimus
-                            repudiandae perferendis eum architecto quisquam deserunt sit commodi cupiditate dicta
-                        {% endif %}
-                    </div>
-                </div>
-
-                <br>
-                
-                <div class='example'>
-                    <code>
-                        Given nums = [2, 7, 11, 15], target = 9,
-                        <br><br>
-                        Because nums[0] + nums[1] = 2 + 7 = 9,
-                        <br>
-                        return [0, 1].
-                    </code>
-                </div>
-                <br>
-                <div>
-                    <span> Total Submissions: <i>435</i>  </span>
-                    <span><i class="fas fa-check"></i> Success Rate: <i>45%</i> </span>
-                </div>
-            </div>
-
         </div>
+    
     </div>
-<!-- <div id='left-side-bar'>
-sd
-</div> -->
+</div>
+
 <!--Console-->
 <div id='console' class='collapse' >
     <div class='tabs project-tab'>
@@ -171,6 +174,5 @@ sd
         <button class='btn open-console' data-target="#console" data-toggle="collapse">Console <i class="fas fa-caret-square-up"></i></button>
     </div>
 </footer>
-
 
 {% endblock %}

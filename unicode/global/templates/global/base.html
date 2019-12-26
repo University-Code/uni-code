@@ -125,9 +125,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-resize/1.1/jquery.ba-resize.js'></script>
     {% if has.editor %}
-    <script src="{% static 'global/editor.js' %}"></script>
+        <script src="{% static 'global/editor.js' %}"></script>
+        <script src ="{% static 'global/confetti.js' %}"></script>
     {% elif has.dummy %}
-    <script src="{% static 'global/dummy_editor.js' %}"></script>
+        <script src="{% static 'global/dummy_editor.js' %}"></script>
     {% endif %}
 
     <script src="{% static 'global/base.js' %}"></script>
