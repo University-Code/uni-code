@@ -136,4 +136,4 @@ LOGIN_URL = 'login'
 
 
 # Andrew's digital ocean IP for Judge0 api endpoint
-CODE_EVAL_API_URL='http://159.89.93.145:3000'  
+CODE_EVAL_API_URL='http://206.81.14.146:3000'  
