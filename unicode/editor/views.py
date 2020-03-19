@@ -62,7 +62,7 @@ def editor(request, prob_id):
     '''
     if request.method == "POST":
         response = request.POST
-        print(response)
+        #print(response)
 
         problem = Problem.objects.get(pk=prob_id)
         current_user= request.user
@@ -75,7 +75,7 @@ def editor(request, prob_id):
         submission= {"user_submission": user_submission, "test_cases":test_cases}
         #submission.save() ---> NOT saving into database until completly tested
         eval_data = eval_setup(submission)
-        print(eval_data) 
+        #print(eval_data) 
         return JsonResponse(eval_data)
 
 
