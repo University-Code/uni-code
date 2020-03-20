@@ -4,7 +4,7 @@ This guide describes how to set up and run a Django server locally to contribute
 
 
 ## Prerequisites
-- Windows subsystems for Linux (for windows users)
+- Bash or other Unix shell
 - Git
 - 🐍Python 3
 - pip
@@ -18,7 +18,7 @@ _NOTE: If you have both python 2 & 3 installed when following this guide you sho
    A virtual environment is used to isolate python projects from other python modules that you may be installed locally. 
    Using `venv` lets you be explicit about what modules your project is dependent on ensuring all developers are working in the same environment.
 
-_NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "bash"_   
+_NOTE: windows users can install [git/bash](https://gitforwindows.org/) or [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and activate bash by opening cmd and typing "bash"_   
 
 1. Make a folder to store virtual environments
 `mkdir ~/virtualenvironments`
