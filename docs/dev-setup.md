@@ -15,8 +15,8 @@ _NOTE: If you have both python 2 & 3 installed when following this guide you sho
 
 ## Creating a Virtual Environment
 
-   A virtual environment is used to isolate python projects from other python modules that you may have installed locally. 
-   Using virtualenv lets you be explicit about what modules your project is dependent on ensuring all users are working in the same environment.
+   A virtual environment is used to isolate python projects from other python modules that you may be installed locally. 
+   Using `venv` lets you be explicit about what modules your project is dependent on ensuring all developers are working in the same environment.
 
 _NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "bash"_   
 
@@ -35,9 +35,9 @@ _NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "ba
 
 ## Running django project
 
-1. Create fork from this repository
+1. Fork this repository
 
-2. Download repo to your local machine
+2. Clone the repo to your local machine
 `git clone https://github.com/<Your github username here>/uni-code.git`
 `cd competitive-programming`
 
@@ -46,8 +46,8 @@ _NOTE: windows users will need to use 'bash-shell' by opening cmd and typing "ba
 4. Install dependencies for project
 `pip install -r requirements.txt`
 
-5. Run server
-`python manage.py runserver`
+5. Run local development server on port 8000
+`python manage.py runserver 8000`
 
 
 ## Developing a feature 
@@ -61,7 +61,7 @@ _alternatively you can create a new branch for each feature_
 
 3. Work on feature
 
-4. `Push` new feature to your github
+4. `Push` new feature to your fork on Github
 
 5. Open pull request on [this repo](https://github.com/johnpaulkiser/uni-code)'s `dev` branch
 
